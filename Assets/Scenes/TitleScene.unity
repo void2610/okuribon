@@ -2190,7 +2190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seMixerGroup: {fileID: -2914203093863034194, guid: 036946d98e62e4eb6a4ed37ee1c88abe, type: 2}
-  soundDatas: []
+  soundDatas:
+  - name: button
+    audioClip: {fileID: 8300000, guid: c08019ad0cad74564a6a63b5cc5d583d, type: 3}
+    volume: 1
 --- !u!4 &1926010145
 Transform:
   m_ObjectHideFlags: 0
@@ -2212,7 +2215,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 268676075}
   - {fileID: 622079246}
+  - {fileID: 525522646}
   - {fileID: 664686114}
   - {fileID: 424170097}
   - {fileID: 1926010145}
-  - {fileID: 525522646}
