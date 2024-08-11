@@ -2,13 +2,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class TitleMenu : MonoBehaviour
 {
     [SerializeField]
+    private Image fadeImage;
+    [SerializeField]
     private Slider bgmSlider;
     [SerializeField]
     private Slider seSlider;
+
+    public void StartGame()
+    {
+        SeManager.instance.PlaySe("button");
+        fadeImage.DOFade(1.0f, 1.0f).OnComplete(() =>
+        {
+            SceneManager.LoadScene("MainScene");
+        });
+    }
 
     public void PlayButtonSe()
     {
