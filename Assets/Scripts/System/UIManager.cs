@@ -99,7 +99,7 @@ public class UIManager : MonoBehaviour
     public void OnClickSave()
     {
         SeManager.instance.PlaySe("button");
-        player.Save();
+        player.EnableSave(true);
     }
     public void OnClickEscape()
     {

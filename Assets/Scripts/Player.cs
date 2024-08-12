@@ -17,31 +17,41 @@ public class Player : MonoBehaviour
     public int maxSave = 5;
     public int save = 0;
 
-    public bool isSaving = false;
+    public bool isSaving { get; private set; } = false;
 
     private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
     private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
     private TextMeshProUGUI saveText => transform.Find("Canvas").transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
     private Slider saveSlider => transform.Find("Canvas").transform.Find("SaveSlider").GetComponent<Slider>();
 
+    public void UpdateStatusDisplay()
+    {
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
+        saveSlider.maxValue = maxSave;
+        saveSlider.value = save;
+        saveText.text = save + "/" + maxSave;
+    }
+
     public void TakeDamage(int damage)
     {
-        if (isSaving)
+        health -= damage;
+        if (health <= 0)
         {
-            save += damage;
-            saveSlider.value = save;
-            saveText.text = save + "/" + maxSave;
+            health = 0;
         }
-        else
+        UpdateStatusDisplay();
+    }
+
+    public void AddSave(int amount)
+    {
+        save += amount;
+        if (save > maxSave)
         {
-            health -= damage;
-            healthSlider.value = health;
-            healthText.text = health + "/" + maxHealth;
-            if (health <= 0)
-            {
-                health = 0;
-            }
+            save = maxSave;
         }
+        UpdateStatusDisplay();
     }
 
     public void Heal(int amount)
@@ -106,11 +116,16 @@ public class Player : MonoBehaviour
         }
 
         save = 0;
-        saveSlider.value = save;
-        saveText.text = save + "/" + maxSave;
+        UpdateStatusDisplay();
     }
 
-    public void Save()
+    public void EnableSave(bool enable)
+    {
+        if (enable) Save();
+        else isSaving = false;
+    }
+
+    private void Save()
     {
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
         isSaving = true;
@@ -125,43 +140,22 @@ public class Player : MonoBehaviour
     public void GrowSave()
     {
         maxSave++;
-        saveSlider.maxValue = maxSave;
-        saveSlider.value = save;
-        saveText.text = save + "/" + maxSave;
+        UpdateStatusDisplay();
     }
 
     public void GrowHp()
     {
         maxHealth += 10;
         health += 10;
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = health;
-        healthText.text = health + "/" + maxHealth;
+        UpdateStatusDisplay();
     }
 
     void Awake()
     {
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = health;
-        healthText.text = health + "/" + maxHealth;
-        saveSlider.maxValue = maxSave;
-        saveSlider.value = save;
-        saveText.text = save + "/" + maxSave;
+        UpdateStatusDisplay();
 
         GameManager.instance.uiManager.UpdateCoinText(gold);
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
-    }
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
-
-    private void FixedUpdate()
-    {
     }
 }

@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.PlayerTurn:
                 uiManager.EnablePlayerActions(true);
-                player.isSaving = false;
+                player.EnableSave(false);
                 break;
             case GameState.PlayerAttack:
                 break;
