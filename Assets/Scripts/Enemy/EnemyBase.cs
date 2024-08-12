@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour
         public string name;
         public Action<Player> action;
         public float probability;
+        public Color color = Color.white;
     }
     public string enemyName = "Enemy";
     public int health = 100;
@@ -22,10 +23,13 @@ public class EnemyBase : MonoBehaviour
     public int exp = 0;
 
     private List<AttackData> enemyActions = new List<AttackData>();
+    private AttackData nextAction;
 
     private TextMeshProUGUI nameText => transform.Find("Canvas").transform.Find("NameText").GetComponent<TextMeshProUGUI>();
     private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
     private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
+    private TextMeshProUGUI attackText => transform.Find("Canvas").transform.Find("AttackText").GetComponent<TextMeshProUGUI>();
+    private Image attackImage => transform.Find("Canvas").transform.Find("AttackIcon").GetComponent<Image>();
 
     public void TakeDamage(int damage)
     {
@@ -52,6 +56,12 @@ public class EnemyBase : MonoBehaviour
 
     public void Attack(Player player)
     {
+        nextAction.action(player);
+        DecideNextAction();
+    }
+
+    private void DecideNextAction()
+    {
         float sum = 0;
         foreach (var a in enemyActions)
         {
@@ -63,11 +73,13 @@ public class EnemyBase : MonoBehaviour
             random -= a.probability;
             if (random <= 0)
             {
-                a.action(player);
-                Debug.Log(enemyName + " used " + a.name);
+                nextAction = a;
                 break;
             }
         }
+
+        attackText.text = nextAction.name;
+        attackImage.color = nextAction.color;
     }
 
     protected virtual void NormalAttack(Player player)
@@ -93,7 +105,9 @@ public class EnemyBase : MonoBehaviour
         healthSlider.value = health;
         healthText.text = health + "/" + maxHealth;
 
-        enemyActions.Add(new AttackData { name = "Normal Attack", action = NormalAttack, probability = 0.8f });
-        enemyActions.Add(new AttackData { name = "Piercing Attack", action = PiercingAttack, probability = 0.2f });
+        enemyActions.Add(new AttackData { name = "Normal Attack", action = NormalAttack, probability = 0.8f, color = Color.red });
+        enemyActions.Add(new AttackData { name = "Piercing Attack", action = PiercingAttack, probability = 0.2f, color = Color.yellow });
+
+        DecideNextAction();
     }
 }

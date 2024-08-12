@@ -8,8 +8,7 @@ public class Player : MonoBehaviour
 {
     public int health = 100;
     public int maxHealth = 100;
-    public int attack = 2;
-    public int defense = 1;
+    public float attack = 1.5f;
     public int gold = 0;
     public int exp = 0;
     public List<int> levelUpExp = new List<int> { 10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120 };
@@ -46,10 +45,15 @@ public class Player : MonoBehaviour
 
     public void AddSave(int amount)
     {
-        save += amount;
-        if (save > maxSave)
+
+        if (save + amount > maxSave)
         {
-            save = maxSave;
+            save = 0;
+            TakeDamage(save + amount);
+        }
+        else
+        {
+            save += amount;
         }
         UpdateStatusDisplay();
     }
@@ -101,7 +105,7 @@ public class Player : MonoBehaviour
     public void Attack(List<EnemyBase> enemies)
     {
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
-        int a = save * attack;
+        int a = Mathf.FloorToInt(attack * (float)save);
         foreach (EnemyBase enemy in enemies)
         {
             enemy.TakeDamage(a);
@@ -135,6 +139,8 @@ public class Player : MonoBehaviour
     public void GrowAttack()
     {
         attack++;
+        GameManager.instance.uiManager.UpdateAttackText(attack);
+        UpdateStatusDisplay();
     }
 
     public void GrowSave()
@@ -157,5 +163,6 @@ public class Player : MonoBehaviour
         GameManager.instance.uiManager.UpdateCoinText(gold);
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
+        GameManager.instance.uiManager.UpdateAttackText(attack);
     }
 }

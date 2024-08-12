@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI levelText;
     [SerializeField]
+    private TextMeshProUGUI attackText;
+    [SerializeField]
     private TextMeshProUGUI stageText;
 
 
@@ -84,6 +86,11 @@ public class UIManager : MonoBehaviour
     public void UpdateLevelText(int level)
     {
         levelText.text = "Level: " + level;
+    }
+
+    public void UpdateAttackText(float attack)
+    {
+        attackText.text = "Attack: " + attack.ToString("F1");
     }
 
     public void UpdateStageText(int stage)
