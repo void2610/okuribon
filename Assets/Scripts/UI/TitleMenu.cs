@@ -16,6 +16,7 @@ public class TitleMenu : MonoBehaviour
     public void StartGame()
     {
         SeManager.instance.PlaySe("button");
+        fadeImage.color = new Color(0, 0, 0, 0);
         fadeImage.DOFade(1.0f, 1.0f).OnComplete(() =>
         {
             SceneManager.LoadScene("MainScene");
@@ -69,6 +70,9 @@ public class TitleMenu : MonoBehaviour
             SeManager.instance.PlaySe("button");
         }));
         trigger.triggers.Add(entry);
+
+        fadeImage.color = new Color(0, 0, 0, 1);
+        fadeImage.DOFade(0.0f, 1.0f);
     }
 
     void Update()

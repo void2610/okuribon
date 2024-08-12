@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
+    private Image fadeImage;
+    [SerializeField]
     private CanvasGroup playerActions;
     [SerializeField]
     private CanvasGroup levlUpOptions;
+    [SerializeField]
+    private CanvasGroup pauseMenu;
     [SerializeField]
     private TextMeshProUGUI coinText;
     [SerializeField]
@@ -46,6 +52,22 @@ public class UIManager : MonoBehaviour
             levlUpOptions.alpha = 0;
             levlUpOptions.interactable = false;
             levlUpOptions.blocksRaycasts = false;
+        }
+    }
+
+    public void EnablePauseMenu(bool e)
+    {
+        if (e)
+        {
+            pauseMenu.alpha = 1;
+            pauseMenu.interactable = true;
+            pauseMenu.blocksRaycasts = true;
+        }
+        else
+        {
+            pauseMenu.alpha = 0;
+            pauseMenu.interactable = false;
+            pauseMenu.blocksRaycasts = false;
         }
     }
 
@@ -109,18 +131,38 @@ public class UIManager : MonoBehaviour
             GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
     }
 
+    public void OnClickPause()
+    {
+        SeManager.instance.PlaySe("button");
+        EnablePauseMenu(true);
+    }
+
+    public void OnClickResume()
+    {
+        SeManager.instance.PlaySe("button");
+        EnablePauseMenu(false);
+    }
+
+    public void OnClickTitle()
+    {
+        SeManager.instance.PlaySe("button");
+        fadeImage.color = new Color(0, 0, 0, 0);
+        fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("TitleScene"));
+    }
+
     void Awake()
     {
         EnablePlayerActions(false);
         EnableLevelUpOptions(false);
+        EnablePauseMenu(false);
     }
 
-    void Start()
+    private void Start()
     {
-
+        fadeImage.color = new Color(0, 0, 0, 1);
+        fadeImage.DOFade(0, 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
 

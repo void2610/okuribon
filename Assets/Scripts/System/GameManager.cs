@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
         LevelUp,
         StageMoving,
         Shop,
-        Paused,
         GameOver,
         Other
     }
@@ -53,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public System.Random random { get; private set; }
     private int seed = 42;
+    private bool isPaused = false;
     public Player player => playerObj.GetComponent<Player>();
     public UIManager uiManager => GetComponent<UIManager>();
     public StageManager stageManager => GetComponent<StageManager>();
@@ -84,8 +84,6 @@ public class GameManager : MonoBehaviour
                 uiManager.EnableLevelUpOptions(false);
                 break;
             case GameState.Shop:
-                break;
-            case GameState.Paused:
                 break;
             case GameState.GameOver:
                 break;
@@ -124,8 +122,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Shop:
                 break;
-            case GameState.Paused:
-                break;
             case GameState.GameOver:
                 break;
             case GameState.Other:
@@ -140,6 +136,19 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                isPaused = false;
+                uiManager.EnablePauseMenu(false);
+            }
+            else
+            {
+                isPaused = true;
+                uiManager.EnablePauseMenu(true);
+            }
+        }
         switch (state)
         {
             case GameState.PlayerTurn:
@@ -151,8 +160,6 @@ public class GameManager : MonoBehaviour
             case GameState.LevelUp:
                 break;
             case GameState.Shop:
-                break;
-            case GameState.Paused:
                 break;
             case GameState.GameOver:
                 break;
