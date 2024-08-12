@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,15 +18,24 @@ public class Player : MonoBehaviour
 
     public bool isSaving = false;
 
+    private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
+    private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
+    private TextMeshProUGUI saveText => transform.Find("Canvas").transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
+    private Slider saveSlider => transform.Find("Canvas").transform.Find("SaveSlider").GetComponent<Slider>();
+
     public void TakeDamage(int damage)
     {
         if (isSaving)
         {
             save += damage;
+            saveSlider.value = save;
+            saveText.text = save + "/" + maxSave;
         }
         else
         {
             health -= damage;
+            healthSlider.value = health;
+            healthText.text = health + "/" + maxHealth;
             if (health <= 0)
             {
                 health = 0;
@@ -58,8 +69,20 @@ public class Player : MonoBehaviour
         {
             enemy.TakeDamage(a);
         }
+        save = 0;
+        saveSlider.value = save;
+        saveText.text = save + "/" + maxSave;
     }
 
+    void Awake()
+    {
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
+        saveSlider.maxValue = maxSave;
+        saveSlider.value = save;
+        saveText.text = save + "/" + maxSave;
+    }
 
     void Start()
     {

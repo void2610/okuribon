@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -9,9 +11,15 @@ public class EnemyBase : MonoBehaviour
     public int defense = 1;
     public int gold = 0;
 
+    private TextMeshProUGUI nameText => transform.Find("Canvas").transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+    private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
+    private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
+
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
         if (health <= 0)
         {
             health = 0;
@@ -22,6 +30,8 @@ public class EnemyBase : MonoBehaviour
     public void Heal(int amount)
     {
         health += amount;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
         if (health > maxHealth)
         {
             health = maxHealth;
@@ -36,5 +46,13 @@ public class EnemyBase : MonoBehaviour
     public void Death()
     {
         this.transform.parent.GetComponent<EnemyContainer>().RemoveEnemy(this.gameObject);
+    }
+
+    protected virtual void Awake()
+    {
+        nameText.text = enemyName;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Slime : EnemyBase
 {
-    void Awake()
+    protected orverride Awake()
     {
         enemyName = "Slime";
         health = 10;
@@ -10,5 +10,7 @@ public class Slime : EnemyBase
         attack = 1;
         defense = 0;
         gold = 10;
+
+        base.Awake();
     }
 }
