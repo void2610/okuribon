@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int defense = 1;
     public int gold = 0;
     public int exp = 0;
+    public List<int> levelUpExp = new List<int> { 10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120 };
     public int level = 1;
     public int maxSave = 50;
     public int save = 0;
@@ -55,11 +56,30 @@ public class Player : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
+        GameManager.instance.uiManager.UpdateCoinText(gold);
     }
 
     public void AddExp(int amount)
     {
         exp += amount;
+        if (exp >= levelUpExp[level - 1])
+        {
+            LevelUp();
+        }
+        GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
+    }
+
+    private void LevelUp()
+    {
+        level++;
+        exp -= levelUpExp[level - 1];
+        Heal(10);
+        if (exp >= levelUpExp[level - 1])
+        {
+            LevelUp();
+        }
+        GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
+        GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
     }
 
     public void Attack(List<EnemyBase> enemies)
@@ -82,6 +102,9 @@ public class Player : MonoBehaviour
         saveSlider.maxValue = maxSave;
         saveSlider.value = save;
         saveText.text = save + "/" + maxSave;
+
+        GameManager.instance.uiManager.UpdateCoinText(gold);
+        GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
     }
 
     void Start()

@@ -10,6 +10,7 @@ public class EnemyBase : MonoBehaviour
     public int attack = 2;
     public int defense = 1;
     public int gold = 0;
+    public int exp = 0;
 
     private TextMeshProUGUI nameText => transform.Find("Canvas").transform.Find("NameText").GetComponent<TextMeshProUGUI>();
     private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();

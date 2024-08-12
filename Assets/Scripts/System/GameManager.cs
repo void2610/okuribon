@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
 
     public System.Random random { get; private set; }
     private int seed = 42;
-    private Player player => playerObj.GetComponent<Player>();
-    private UIManager uiManager => GetComponent<UIManager>();
+    public Player player => playerObj.GetComponent<Player>();
+    public UIManager uiManager => GetComponent<UIManager>();
 
     public float RandomRange(float min, float max)
     {
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
             case GameState.EnemyTurn:
                 break;
             case GameState.LevelUp:
+                uiManager.EnableLevelUpOptions(false);
                 break;
             case GameState.Shop:
                 break;
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
                 ChangeState(GameState.PlayerTurn);
                 break;
             case GameState.LevelUp:
+                uiManager.EnableLevelUpOptions(true);
                 break;
             case GameState.Shop:
                 break;
