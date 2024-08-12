@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         PlayerAttack,
         EnemyAttack,
         LevelUp,
+        StageMoving,
         Shop,
         Paused,
         GameOver,
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     private int seed = 42;
     public Player player => playerObj.GetComponent<Player>();
     public UIManager uiManager => GetComponent<UIManager>();
+    public StageManager stageManager => GetComponent<StageManager>();
 
     public float RandomRange(float min, float max)
     {
@@ -90,6 +92,16 @@ public class GameManager : MonoBehaviour
             case GameState.Other:
                 break;
         }
+        switch (newState)
+        {
+            // 敵を倒したら次のステージへ
+            case GameState.EnemyAttack:
+                if (enemyContainer.GetEnemyCount() == 0)
+                {
+                    newState = GameState.StageMoving;
+                }
+                break;
+        }
         state = newState;
         Debug.Log("State: " + state);
         switch (newState)
@@ -107,6 +119,9 @@ public class GameManager : MonoBehaviour
             case GameState.LevelUp:
                 uiManager.EnableLevelUpOptions(true);
                 break;
+            case GameState.StageMoving:
+                stageManager.NextStage();
+                break;
             case GameState.Shop:
                 break;
             case GameState.Paused:
@@ -120,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ChangeState(GameState.PlayerTurn);
+        ChangeState(GameState.StageMoving);
     }
 
     void Update()

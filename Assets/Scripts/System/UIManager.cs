@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI expText;
     [SerializeField]
     private TextMeshProUGUI levelText;
+    [SerializeField]
+    private TextMeshProUGUI stageText;
 
 
     public int remainingLevelUps = 0;
@@ -23,15 +25,11 @@ public class UIManager : MonoBehaviour
     {
         if (e)
         {
-            playerActions.alpha = 1;
             playerActions.interactable = true;
-            playerActions.blocksRaycasts = true;
         }
         else
         {
-            playerActions.alpha = 0;
             playerActions.interactable = false;
-            playerActions.blocksRaycasts = false;
         }
     }
 
@@ -64,6 +62,11 @@ public class UIManager : MonoBehaviour
     public void UpdateLevelText(int level)
     {
         levelText.text = "Level: " + level;
+    }
+
+    public void UpdateStageText(int stage)
+    {
+        stageText.text = "Stage: " + stage;
     }
 
     public void OnClickAttack()

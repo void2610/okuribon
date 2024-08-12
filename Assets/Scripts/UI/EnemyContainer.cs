@@ -20,6 +20,11 @@ public class EnemyContainer : MonoBehaviour
 
     private List<Vector3> positions = new List<Vector3>();
 
+    public int GetEnemyCount()
+    {
+        return currentEnemies.Count;
+    }
+
     public List<EnemyBase> GetAllEnemies()
     {
         List<EnemyBase> enemyBases = new List<EnemyBase>();
