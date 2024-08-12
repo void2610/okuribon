@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         PlayerTurn,
-        EnemyTurn,
+        PlayerAttack,
+        EnemyAttack,
         LevelUp,
         Shop,
         Paused,
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject playerObj;
     [SerializeField]
-    private EnemyContainer enemyContainer;
+    public EnemyContainer enemyContainer;
 
     public System.Random random { get; private set; }
     private int seed = 42;
@@ -66,22 +67,6 @@ public class GameManager : MonoBehaviour
         return randomValue;
     }
 
-
-    public void OnClickAttack()
-    {
-        player.Attack(enemyContainer.GetAllEnemies());
-        ChangeState(GameState.EnemyTurn);
-    }
-    public void OnClickSave()
-    {
-        player.isSaving = true;
-        ChangeState(GameState.EnemyTurn);
-    }
-    public void OnClickEscape()
-    {
-        ChangeState(GameState.EnemyTurn);
-    }
-
     public void ChangeState(GameState newState)
     {
         switch (state)
@@ -89,7 +74,9 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerTurn:
                 uiManager.EnablePlayerActions(false);
                 break;
-            case GameState.EnemyTurn:
+            case GameState.PlayerAttack:
+                break;
+            case GameState.EnemyAttack:
                 break;
             case GameState.LevelUp:
                 uiManager.EnableLevelUpOptions(false);
@@ -111,7 +98,9 @@ public class GameManager : MonoBehaviour
                 uiManager.EnablePlayerActions(true);
                 player.isSaving = false;
                 break;
-            case GameState.EnemyTurn:
+            case GameState.PlayerAttack:
+                break;
+            case GameState.EnemyAttack:
                 enemyContainer.AttackPlayer(player);
                 ChangeState(GameState.PlayerTurn);
                 break;
@@ -140,7 +129,9 @@ public class GameManager : MonoBehaviour
         {
             case GameState.PlayerTurn:
                 break;
-            case GameState.EnemyTurn:
+            case GameState.PlayerAttack:
+                break;
+            case GameState.EnemyAttack:
                 break;
             case GameState.LevelUp:
                 break;

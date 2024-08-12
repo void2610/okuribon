@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public int exp = 0;
     public List<int> levelUpExp = new List<int> { 10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120 };
     public int level = 1;
-    public int maxSave = 50;
+    public int maxSave = 5;
     public int save = 0;
 
     public bool isSaving = false;
@@ -62,36 +62,81 @@ public class Player : MonoBehaviour
     public void AddExp(int amount)
     {
         exp += amount;
-        if (exp >= levelUpExp[level - 1])
-        {
-            LevelUp();
-        }
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
     }
 
-    private void LevelUp()
+    private bool CheckAndLevelUp()
     {
-        level++;
+        if (exp < levelUpExp[level - 1])
+        {
+            return false;
+        }
+
         exp -= levelUpExp[level - 1];
+        level++;
         Heal(10);
+        GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
+        GameManager.instance.uiManager.UpdateLevelText(level);
+        GameManager.instance.uiManager.remainingLevelUps++;
+        GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+
         if (exp >= levelUpExp[level - 1])
         {
-            LevelUp();
+            CheckAndLevelUp();
         }
-        GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
-        GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+
+        return true;
     }
 
     public void Attack(List<EnemyBase> enemies)
     {
+        GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
         int a = save * attack;
         foreach (EnemyBase enemy in enemies)
         {
             enemy.TakeDamage(a);
         }
+        if (CheckAndLevelUp())
+        {
+            GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+        }
+        else
+        {
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+        }
+
         save = 0;
         saveSlider.value = save;
         saveText.text = save + "/" + maxSave;
+    }
+
+    public void Save()
+    {
+        GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
+        isSaving = true;
+        GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+    }
+
+    public void GrowAttack()
+    {
+        attack++;
+    }
+
+    public void GrowSave()
+    {
+        maxSave++;
+        saveSlider.maxValue = maxSave;
+        saveSlider.value = save;
+        saveText.text = save + "/" + maxSave;
+    }
+
+    public void GrowHp()
+    {
+        maxHealth += 10;
+        health += 10;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
     }
 
     void Awake()
@@ -105,6 +150,7 @@ public class Player : MonoBehaviour
 
         GameManager.instance.uiManager.UpdateCoinText(gold);
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
+        GameManager.instance.uiManager.UpdateLevelText(level);
     }
 
     void Start()

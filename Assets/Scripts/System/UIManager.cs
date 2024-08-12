@@ -12,6 +12,12 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI coinText;
     [SerializeField]
     private TextMeshProUGUI expText;
+    [SerializeField]
+    private TextMeshProUGUI levelText;
+
+
+    public int remainingLevelUps = 0;
+    private Player player => GameManager.instance.player;
 
     public void EnablePlayerActions(bool e)
     {
@@ -53,6 +59,51 @@ public class UIManager : MonoBehaviour
     public void UpdateExpText(int now, int max)
     {
         expText.text = "EXP: " + now + "/" + max;
+    }
+
+    public void UpdateLevelText(int level)
+    {
+        levelText.text = "Level: " + level;
+    }
+
+    public void OnClickAttack()
+    {
+        SeManager.instance.PlaySe("button");
+        player.Attack(GameManager.instance.enemyContainer.GetAllEnemies());
+    }
+    public void OnClickSave()
+    {
+        SeManager.instance.PlaySe("button");
+        player.Save();
+    }
+    public void OnClickEscape()
+    {
+        SeManager.instance.PlaySe("button");
+        GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+    }
+
+    public void OnClickGrowAttack()
+    {
+        SeManager.instance.PlaySe("button");
+        player.GrowAttack();
+        if (--remainingLevelUps <= 0)
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+    }
+
+    public void OnClickGrowSave()
+    {
+        SeManager.instance.PlaySe("button");
+        player.GrowSave();
+        if (--remainingLevelUps <= 0)
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+    }
+
+    public void OnClickGrowHp()
+    {
+        SeManager.instance.PlaySe("button");
+        player.GrowHp();
+        if (--remainingLevelUps <= 0)
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
     }
 
     void Awake()
