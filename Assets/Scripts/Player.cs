@@ -74,6 +74,10 @@ public class Player : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
+        if (gold < 0)
+        {
+            gold = 0;
+        }
         GameManager.instance.uiManager.UpdateCoinText(gold);
     }
 

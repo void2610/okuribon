@@ -32,8 +32,6 @@ public class EnemyBase : MonoBehaviour
     private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
     private TextMeshProUGUI attackText => transform.Find("Canvas").transform.Find("AttackText").GetComponent<TextMeshProUGUI>();
     private Image attackImage => transform.Find("Canvas").transform.Find("AttackIcon").GetComponent<Image>();
-    private CanvasGroup description => transform.Find("Canvas").transform.Find("Description").GetComponent<CanvasGroup>();
-
     public void TakeDamage(int damage)
     {
         health -= damage;

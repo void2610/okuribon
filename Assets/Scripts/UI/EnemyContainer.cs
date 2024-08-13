@@ -77,7 +77,7 @@ public class EnemyContainer : MonoBehaviour
         Destroy(enemy);
     }
 
-    void Start()
+    void Awake()
     {
         positions.Add(this.transform.position + new Vector3(-alignment, 0, 0));
         positions.Add(this.transform.position);
