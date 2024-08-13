@@ -51,6 +51,10 @@ public class Player : MonoBehaviour
             save = 0;
             TakeDamage(save + amount);
         }
+        else if (save + amount < 0)
+        {
+            save = 0;
+        }
         else
         {
             save += amount;

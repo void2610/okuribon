@@ -24,7 +24,7 @@ public class EnemyBase : MonoBehaviour
     public int gold = 0;
     public int exp = 0;
 
-    private List<AttackData> enemyActions = new List<AttackData>();
+    protected List<AttackData> enemyActions = new List<AttackData>();
     private AttackData nextAction;
 
     private TextMeshProUGUI nameText => transform.Find("Canvas").transform.Find("NameText").GetComponent<TextMeshProUGUI>();
@@ -83,7 +83,7 @@ public class EnemyBase : MonoBehaviour
 
         attackText.text = nextAction.name;
         attackImage.color = nextAction.color;
-        description.GetComponentInChildren<TextMeshProUGUI>().text = nextAction.description;
+        attackImage.GetComponent<OverRayWindow>().text = nextAction.description;
     }
 
     protected virtual void NormalAttack(Player player)
@@ -111,17 +111,6 @@ public class EnemyBase : MonoBehaviour
 
         enemyActions.Add(new AttackData { name = "Normal Attack", action = NormalAttack, probability = 0.8f, color = Color.red, description = "hutuu" });
         enemyActions.Add(new AttackData { name = "Piercing Attack", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "kantuu" });
-
-        // マウスオーバー時に説明を表示
-        EventTrigger trigger = attackImage.gameObject.AddComponent<EventTrigger>();
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerEnter;
-        entry.callback.AddListener((data) => { description.alpha = 1; });
-        trigger.triggers.Add(entry);
-        entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerExit;
-        entry.callback.AddListener((data) => { description.alpha = 0; });
-        trigger.triggers.Add(entry);
 
         DecideNextAction();
     }
