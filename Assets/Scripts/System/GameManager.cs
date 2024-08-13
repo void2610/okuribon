@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     private GameObject playerObj;
     [SerializeField]
     public EnemyContainer enemyContainer;
+    [SerializeField]
+    public Shop shop;
 
     public System.Random random { get; private set; }
     private int seed = 42;
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
                 uiManager.EnableLevelUpOptions(false);
                 break;
             case GameState.Shop:
+                shop.ResetItem();
+                uiManager.EnableShopOptions(false);
                 break;
             case GameState.GameOver:
                 break;
@@ -121,6 +125,8 @@ public class GameManager : MonoBehaviour
                 stageManager.NextStage();
                 break;
             case GameState.Shop:
+                shop.SetItem(3);
+                uiManager.EnableShopOptions(true);
                 break;
             case GameState.GameOver:
                 break;

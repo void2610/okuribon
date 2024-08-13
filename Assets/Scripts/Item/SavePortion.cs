@@ -4,13 +4,13 @@ public class SavePortion : ItemBase
 {
     public override void Use(Player p)
     {
-        p.AddSave(10);
+        p.AddSaveFromItem(10);
     }
 
     protected override void Awake()
     {
-        itemName = "SavePortion";
-        price = 10;
+        itemName = "Save Portion";
+        price = 5;
         description = "Add 10 Save";
 
         base.Awake();

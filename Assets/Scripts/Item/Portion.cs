@@ -10,7 +10,7 @@ public class Portion : ItemBase
     protected override void Awake()
     {
         itemName = "Portion";
-        price = 10;
+        price = 3;
         description = "Restores 10 HP";
 
         base.Awake();

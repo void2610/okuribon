@@ -86,7 +86,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void NormalAttack(Player player)
     {
-        if (player.isSaving) player.AddSave(attack);
+        if (player.isSaving) player.AddSaveFromEnemy(attack);
         else player.TakeDamage(attack);
     }
 

@@ -43,13 +43,13 @@ public class Player : MonoBehaviour
         UpdateStatusDisplay();
     }
 
-    public void AddSave(int amount)
+    public void AddSaveFromEnemy(int amount)
     {
-
+        Debug.Log(save + amount);
         if (save + amount > maxSave)
         {
-            save = 0;
             TakeDamage(save + amount);
+            save = 0;
         }
         else if (save + amount < 0)
         {
@@ -62,6 +62,16 @@ public class Player : MonoBehaviour
         UpdateStatusDisplay();
     }
 
+    public void AddSaveFromItem(int amount)
+    {
+        save += amount;
+        if (save > maxSave)
+        {
+            save = maxSave;
+        }
+        UpdateStatusDisplay();
+    }
+
     public void Heal(int amount)
     {
         health += amount;
@@ -69,6 +79,7 @@ public class Player : MonoBehaviour
         {
             health = maxHealth;
         }
+        UpdateStatusDisplay();
     }
 
     public void AddGold(int amount)
@@ -172,5 +183,13 @@ public class Player : MonoBehaviour
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
         GameManager.instance.uiManager.UpdateAttackText(attack);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            AddGold(100);
+        }
     }
 }

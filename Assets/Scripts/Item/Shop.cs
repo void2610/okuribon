@@ -17,7 +17,7 @@ public class Shop : MonoBehaviour
 
     private List<GameObject> currentItems = new List<GameObject>();
     private int itemNum = 3;
-    private float alignment = 4;
+    private float alignment = 3;
 
     private List<Vector3> positions = new List<Vector3>();
 
@@ -66,10 +66,11 @@ public class Shop : MonoBehaviour
             b.onClick.AddListener(() =>
             {
                 var item = g.GetComponent<ItemBase>();
-                if (item != null) return;
+                if (item == null) return;
                 if (GameManager.instance.player.gold >= item.price)
                 {
                     GameManager.instance.player.AddGold(-item.price);
+                    item.Use(GameManager.instance.player);
                     Destroy(g);
                     currentItems.Remove(g);
                     SeManager.instance.PlaySe("buy");
@@ -87,10 +88,5 @@ public class Shop : MonoBehaviour
         positions.Add(this.transform.position + new Vector3(-alignment, 0, 0));
         positions.Add(this.transform.position);
         positions.Add(this.transform.position + new Vector3(alignment, 0, 0));
-    }
-
-    private void Start()
-    {
-        SetItem(3);
     }
 }

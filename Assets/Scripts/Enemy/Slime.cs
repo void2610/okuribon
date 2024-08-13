@@ -4,7 +4,7 @@ public class Slime : EnemyBase
 {
     private void SlimeAttack(Player player)
     {
-        player.AddSave(-attack);
+        player.AddSaveFromEnemy(-attack);
     }
 
     protected override void Awake()

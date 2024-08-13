@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup levlUpOptions;
     [SerializeField]
+    private CanvasGroup shopOptions;
+    [SerializeField]
     private CanvasGroup pauseMenu;
     [SerializeField]
     private TextMeshProUGUI coinText;
@@ -54,6 +56,22 @@ public class UIManager : MonoBehaviour
             levlUpOptions.alpha = 0;
             levlUpOptions.interactable = false;
             levlUpOptions.blocksRaycasts = false;
+        }
+    }
+
+    public void EnableShopOptions(bool e)
+    {
+        if (e)
+        {
+            shopOptions.alpha = 1;
+            shopOptions.interactable = true;
+            shopOptions.blocksRaycasts = true;
+        }
+        else
+        {
+            shopOptions.alpha = 0;
+            shopOptions.interactable = false;
+            shopOptions.blocksRaycasts = false;
         }
     }
 
@@ -114,6 +132,12 @@ public class UIManager : MonoBehaviour
         GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
     }
 
+    public void OnClickShopExit()
+    {
+        SeManager.instance.PlaySe("button");
+        GameManager.instance.ChangeState(GameManager.GameState.StageMoving);
+    }
+
     public void OnClickGrowAttack()
     {
         SeManager.instance.PlaySe("button");
@@ -161,6 +185,7 @@ public class UIManager : MonoBehaviour
     {
         EnablePlayerActions(false);
         EnableLevelUpOptions(false);
+        EnableShopOptions(false);
         EnablePauseMenu(false);
     }
 
