@@ -385,10 +385,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017902726430840700}
-  - component: {fileID: 84143327311862479}
   - component: {fileID: 1308503465890675102}
+  - component: {fileID: 8329137610233646251}
   m_Layer: 0
-  m_Name: Portion
+  m_Name: SavePortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,22 +414,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &84143327311862479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8007421928482692199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0a1881280f7244f9858d9ea3760ec36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Portion
-  price: 10
-  icon: {fileID: -724805922, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
-  description: Restores 50 HP
 --- !u!222 &1308503465890675102
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -438,6 +422,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8007421928482692199}
   m_CullTransparentMesh: 1
+--- !u!114 &8329137610233646251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007421928482692199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7d74c73a8be473c9f6c7ea2e8416df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: 
+  price: 0
+  icon: {fileID: 6547572931748238266, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  description: 
 --- !u!1 &8612536706125751476
 GameObject:
   m_ObjectHideFlags: 0

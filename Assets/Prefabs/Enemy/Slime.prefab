@@ -693,7 +693,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 500, y: 200}
-  text: Hello, World!
   fontSize: 50
   position: {x: 0, y: -150}
 --- !u!1 &4828002224471981140
@@ -1096,7 +1095,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1045181238759104467, guid: 6e4f132162cb3ca48a8dcb3c2fa98b8f, type: 3}
   m_Color: {r: 0.08962262, g: 0.54353416, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

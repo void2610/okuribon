@@ -3759,6 +3759,8 @@ MonoBehaviour:
   items:
   - prefab: {fileID: 8007421928482692199, guid: da762fc1f179841d0ab6f485fd9f0593, type: 3}
     probability: 1
+  - prefab: {fileID: 8007421928482692199, guid: 6dbf6889a7b7a4b58bead56811cd8fcd, type: 3}
+    probability: 0.5
 --- !u!4 &1489068728
 Transform:
   m_ObjectHideFlags: 0
