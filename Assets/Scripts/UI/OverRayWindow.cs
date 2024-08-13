@@ -22,6 +22,8 @@ public class OverRayWindow : MonoBehaviour
         get { return _text; }
     }
     [SerializeField]
+    public TMP_FontAsset font;
+    [SerializeField]
     public float fontSize = 24;
     [SerializeField]
     public Vector2 position = new Vector2(0, 0);
@@ -55,6 +57,7 @@ public class OverRayWindow : MonoBehaviour
         textObject.transform.SetParent(window.transform);
         textObject.transform.localScale = Vector3.one;
         t = textObject.AddComponent<TextMeshProUGUI>();
+        t.font = font;
         t.text = _text;
         t.fontSize = this.fontSize;
         t.alignment = TextAlignmentOptions.Center;
