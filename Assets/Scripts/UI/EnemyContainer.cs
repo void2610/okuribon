@@ -13,6 +13,8 @@ public class EnemyContainer : MonoBehaviour
 
     [SerializeField]
     private List<EnemyData> enemies = new List<EnemyData>();
+    [SerializeField]
+    private List<EnemyData> bosses = new List<EnemyData>();
     private List<GameObject> currentEnemies = new List<GameObject>();
     private int enemyNum = 3;
     [SerializeField]
@@ -33,6 +35,28 @@ public class EnemyContainer : MonoBehaviour
             enemyBases.Add(enemy.GetComponent<EnemyBase>());
         }
         return enemyBases;
+    }
+
+    public void SpawnBoss()
+    {
+        float total = 0;
+        foreach (EnemyData enemyData in bosses)
+        {
+            total += enemyData.probability;
+        }
+        float randomPoint = GameManager.instance.RandomRange(0.0f, total);
+
+        foreach (EnemyData enemyData in bosses)
+        {
+            if (randomPoint < enemyData.probability)
+            {
+                var e = Instantiate(enemyData.prefab, this.transform);
+                currentEnemies.Add(e);
+                e.transform.position = positions[1];
+                break;
+            }
+            randomPoint -= enemyData.probability;
+        }
     }
 
     public void SpawnEnemy(int count = 1)

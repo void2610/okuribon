@@ -36,7 +36,7 @@ public class StageManager : MonoBehaviour
                 GameManager.instance.ChangeState(GameManager.GameState.Shop);
                 break;
             case StageType.boss:
-                // GameManager.instance.enemyContainer.SpawnBoss();
+                GameManager.instance.enemyContainer.SpawnBoss();
                 GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
                 break;
             case StageType.events:

@@ -1027,9 +1027,9 @@ GameObject:
   m_Component:
   - component: {fileID: 530859263277078865}
   - component: {fileID: 4466375654683896431}
-  - component: {fileID: 1349619847348535950}
+  - component: {fileID: -3657896790348200610}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1095,8 +1095,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8469623291084099148, guid: ade51c80233e83c4da80d8b0e68e4167, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -4020335626915314013, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1106,7 +1106,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1349619847348535950
+--- !u!114 &-3657896790348200610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7482158671427050333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2847fc6877b114b259a903d330da0da1, type: 3}
+  m_Script: {fileID: 11500000, guid: 53fd8c9cf581345889c1d11f4107ab11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Enemy

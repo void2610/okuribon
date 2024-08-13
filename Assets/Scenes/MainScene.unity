@@ -646,6 +646,9 @@ MonoBehaviour:
   enemies:
   - prefab: {fileID: 7482158671427050333, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
     probability: 1
+  bosses:
+  - prefab: {fileID: 7482158671427050333, guid: 8285ac5ce8b30440d98460f33bab4222, type: 3}
+    probability: 1
   alignment: 3.5
 --- !u!1 &230864363
 GameObject:
@@ -2210,7 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5c4297ff24a48ed8fc14704acca3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTypes: 010000000000000000000000
+  stageTypes: 00000000000000000100000002000000
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
