@@ -120,5 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   price: 0
-  icon: {fileID: 8674190453677158122, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  icon: {fileID: 1019276463047179789, guid: 868c13be502e0e44e9d9ee0acf9c63eb, type: 3}
   description: 

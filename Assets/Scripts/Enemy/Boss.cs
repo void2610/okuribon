@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Boss : EnemyBase
 {
@@ -9,12 +10,12 @@ public class Boss : EnemyBase
 
     protected override void Awake()
     {
-        enemyName = "ボス";
-        health = 100;
-        maxHealth = 100;
-        attack = 10;
+        enemyName = "???";
+        health = 50;
+        maxHealth = 50;
+        attack = 5;
         defense = 0;
-        gold = 100;
+        gold = 50;
         exp = 0;
         enemyActions.Add(new AttackData
         {
@@ -26,5 +27,8 @@ public class Boss : EnemyBase
         });
 
         base.Awake();
+
+        // ゆらゆらと動かす
+        transform.DOLocalMoveY(0.2f, 1f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 }

@@ -9,7 +9,7 @@ public class Portion : ItemBase
 
     protected override void Awake()
     {
-        itemName = "赤いえきたい";
+        itemName = "あかいおふだ";
         price = 3;
         description = "たいりょくを10かいふく";
 

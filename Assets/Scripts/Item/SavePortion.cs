@@ -9,7 +9,7 @@ public class SavePortion : ItemBase
 
     protected override void Awake()
     {
-        itemName = "青いえきたい";
+        itemName = "あおいおふだ";
         price = 5;
         description = "ためた値を10ふやす";
 
