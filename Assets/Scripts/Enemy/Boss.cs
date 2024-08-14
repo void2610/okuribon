@@ -15,7 +15,7 @@ public class Boss : EnemyBase
         attack = 10;
         defense = 0;
         gold = 100;
-        exp = 100;
+        exp = 0;
         enemyActions.Add(new AttackData
         {
             name = "ボスこうげき",

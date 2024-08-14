@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup pauseMenu;
     [SerializeField]
+    private CanvasGroup gameOver;
+    [SerializeField]
+    private CanvasGroup clear;
+    [SerializeField]
     private TextMeshProUGUI coinText;
     [SerializeField]
     private TextMeshProUGUI expText;
@@ -89,6 +93,38 @@ public class UIManager : MonoBehaviour
             pauseMenu.alpha = 0;
             pauseMenu.interactable = false;
             pauseMenu.blocksRaycasts = false;
+        }
+    }
+
+    public void EnableGameOver(bool e)
+    {
+        if (e)
+        {
+            gameOver.alpha = 1;
+            gameOver.interactable = true;
+            gameOver.blocksRaycasts = true;
+        }
+        else
+        {
+            gameOver.alpha = 0;
+            gameOver.interactable = false;
+            gameOver.blocksRaycasts = false;
+        }
+    }
+
+    public void EnableClear(bool e)
+    {
+        if (e)
+        {
+            clear.alpha = 1;
+            clear.interactable = true;
+            clear.blocksRaycasts = true;
+        }
+        else
+        {
+            clear.alpha = 0;
+            clear.interactable = false;
+            clear.blocksRaycasts = false;
         }
     }
 
@@ -186,12 +222,21 @@ public class UIManager : MonoBehaviour
         fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("TitleScene"));
     }
 
+    public void OnClickRetry()
+    {
+        SeManager.instance.PlaySe("button");
+        fadeImage.color = new Color(0, 0, 0, 0);
+        fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("MainScene"));
+    }
+
     void Awake()
     {
         EnablePlayerActions(false);
         EnableLevelUpOptions(false);
         EnableShopOptions(false);
         EnablePauseMenu(false);
+        EnableGameOver(false);
+        EnableClear(false);
     }
 
     private void Start()

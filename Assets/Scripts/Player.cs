@@ -202,6 +202,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        health = maxHealth;
         UpdateStatusDisplay();
 
         GameManager.instance.uiManager.UpdateCoinText(gold);

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         StageMoving,
         Shop,
         GameOver,
+        Clear,
         Other
     }
     public GameState state = GameState.PlayerTurn;
@@ -100,7 +101,22 @@ public class GameManager : MonoBehaviour
             case GameState.EnemyAttack:
                 if (enemyContainer.GetEnemyCount() == 0)
                 {
-                    newState = GameState.StageMoving;
+                    //ボスならクリア
+                    if (stageManager.GetCurrentStageType() == StageManager.StageType.boss)
+                    {
+                        newState = GameState.Clear;
+                    }
+                    else
+                    {
+                        newState = GameState.StageMoving;
+                    }
+                }
+                break;
+            // HPが0になったらゲームオーバー
+            case GameState.PlayerTurn:
+                if (player.health <= 0)
+                {
+                    newState = GameState.GameOver;
                 }
                 break;
         }
@@ -128,6 +144,10 @@ public class GameManager : MonoBehaviour
                 uiManager.EnableShopOptions(true);
                 break;
             case GameState.GameOver:
+                uiManager.EnableGameOver(true);
+                break;
+            case GameState.Clear:
+                uiManager.EnableClear(true);
                 break;
             case GameState.Other:
                 break;

@@ -21,6 +21,11 @@ public class StageManager : MonoBehaviour
     private int currentStage = -1;
     private int enemyStageCount = 0;
 
+    public StageType GetCurrentStageType()
+    {
+        return stageTypes[currentStage];
+    }
+
     public void NextStage()
     {
         SeManager.instance.PlaySe("footsteps");
