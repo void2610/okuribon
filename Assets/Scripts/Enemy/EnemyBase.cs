@@ -24,14 +24,17 @@ public class EnemyBase : MonoBehaviour
     public int gold = 0;
     public int exp = 0;
 
+    [SerializeField]
+    private GameObject canvas;
+
     protected List<AttackData> enemyActions = new List<AttackData>();
     private AttackData nextAction;
 
-    private TextMeshProUGUI nameText => transform.Find("Canvas").transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-    private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
-    private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
-    private TextMeshProUGUI attackText => transform.Find("Canvas").transform.Find("AttackText").GetComponent<TextMeshProUGUI>();
-    private Image attackImage => transform.Find("Canvas").transform.Find("AttackIcon").GetComponent<Image>();
+    private TextMeshProUGUI nameText => canvas.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+    private TextMeshProUGUI healthText => canvas.transform.Find("HPText").GetComponent<TextMeshProUGUI>();
+    private Slider healthSlider => canvas.transform.Find("HPSlider").GetComponent<Slider>();
+    private TextMeshProUGUI attackText => canvas.transform.Find("AttackText").GetComponent<TextMeshProUGUI>();
+    private Image attackImage => canvas.transform.Find("AttackIcon").GetComponent<Image>();
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -97,7 +100,7 @@ public class EnemyBase : MonoBehaviour
 
     public void Death()
     {
-        this.transform.parent.GetComponent<EnemyContainer>().RemoveEnemy(this.gameObject);
+        this.transform.parent.parent.GetComponent<EnemyContainer>().RemoveEnemy(this.gameObject);
     }
 
     protected virtual void Awake()
@@ -107,9 +110,13 @@ public class EnemyBase : MonoBehaviour
         healthSlider.value = health;
         healthText.text = health + "/" + maxHealth;
 
-        enemyActions.Add(new AttackData { name = "Normal Attack", action = NormalAttack, probability = 0.8f, color = Color.red, description = "hutuu" });
-        enemyActions.Add(new AttackData { name = "Piercing Attack", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "kantuu" });
+        enemyActions.Add(new AttackData { name = "こうげき", action = NormalAttack, probability = 0.8f, color = Color.red, description = "いたいぞ！" });
+        enemyActions.Add(new AttackData { name = "かんつう\nこうげき", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "ためることができない" });
 
         DecideNextAction();
+    }
+
+    protected virtual void Update()
+    {
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Slime : EnemyBase
 {
@@ -9,7 +10,7 @@ public class Slime : EnemyBase
 
     protected override void Awake()
     {
-        enemyName = "Slime";
+        enemyName = "タマシイ";
         health = 10;
         maxHealth = 10;
         attack = 1;
@@ -18,13 +19,16 @@ public class Slime : EnemyBase
         exp = 10;
         enemyActions.Add(new AttackData
         {
-            name = "SlimeAttack",
+            name = "すいとる",
             action = SlimeAttack,
             probability = 0.2f,
             color = Color.blue,
-            description = "nullnull",
+            description = "ためた値を1へらす",
         });
 
         base.Awake();
+
+        // ゆらゆらと動かす
+        transform.DOLocalMoveY(0.2f, 1f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 }

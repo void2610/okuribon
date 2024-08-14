@@ -644,10 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - prefab: {fileID: 7482158671427050333, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+  - prefab: {fileID: 7123930927352974661, guid: 26ab72f4ec00046669939f6b0e5575b1, type: 3}
     probability: 1
   bosses:
-  - prefab: {fileID: 7482158671427050333, guid: 8285ac5ce8b30440d98460f33bab4222, type: 3}
+  - prefab: {fileID: 3949692989573810466, guid: c874cebddeaf64e2d8cc181edcdf9d50, type: 3}
     probability: 1
   alignment: 3.5
 --- !u!1 &230864363
@@ -1417,7 +1417,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 519420031}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2031,8 +2031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresDepthTextureOption: 0
+  m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -2040,7 +2040,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
+  m_VolumeFrameworkUpdateModeOption: 0
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -2072,7 +2072,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3945,9 +3945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - prefab: {fileID: 8007421928482692199, guid: da762fc1f179841d0ab6f485fd9f0593, type: 3}
+  - prefab: {fileID: 940816398273751975, guid: f91da1200c1954ff4a08a426b66db118, type: 3}
     probability: 1
-  - prefab: {fileID: 8007421928482692199, guid: 6dbf6889a7b7a4b58bead56811cd8fcd, type: 3}
+  - prefab: {fileID: 539264267585783397, guid: 6dbf6889a7b7a4b58bead56811cd8fcd, type: 3}
     probability: 0.5
 --- !u!4 &1489068728
 Transform:

@@ -9,9 +9,9 @@ public class Portion : ItemBase
 
     protected override void Awake()
     {
-        itemName = "Portion";
+        itemName = "赤いえきたい";
         price = 3;
-        description = "Restores 10 HP";
+        description = "たいりょくを10かいふく";
 
         base.Awake();
     }

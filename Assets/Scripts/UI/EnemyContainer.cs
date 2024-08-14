@@ -32,7 +32,7 @@ public class EnemyContainer : MonoBehaviour
         List<EnemyBase> enemyBases = new List<EnemyBase>();
         foreach (GameObject enemy in currentEnemies)
         {
-            enemyBases.Add(enemy.GetComponent<EnemyBase>());
+            enemyBases.Add(enemy.transform.GetChild(0).GetComponent<EnemyBase>());
         }
         return enemyBases;
     }
@@ -89,7 +89,8 @@ public class EnemyContainer : MonoBehaviour
     {
         foreach (GameObject enemy in currentEnemies)
         {
-            enemy.GetComponent<EnemyBase>().Attack(player);
+            EnemyBase enemyBase = enemy.transform.GetChild(0).GetComponent<EnemyBase>();
+            enemyBase.Attack(player);
         }
     }
 
@@ -97,8 +98,9 @@ public class EnemyContainer : MonoBehaviour
     {
         GameManager.instance.player.AddExp(enemy.GetComponent<EnemyBase>().exp);
         GameManager.instance.player.AddGold(enemy.GetComponent<EnemyBase>().gold);
-        currentEnemies.Remove(enemy);
-        Destroy(enemy);
+        GameObject g = enemy.transform.parent.gameObject;
+        currentEnemies.Remove(g);
+        Destroy(g);
     }
 
     void Awake()
