@@ -94,27 +94,28 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoinText(int amount)
     {
-        coinText.text = "Coin: " + amount.ToString();
+        coinText.text = "おかね: " + amount.ToString();
     }
 
     public void UpdateExpText(int now, int max)
     {
-        expText.text = "EXP: " + now + "/" + max;
+        expText.text = "けいけんち: " + now + "/" + max;
     }
 
     public void UpdateLevelText(int level)
     {
-        levelText.text = "Level: " + level;
+        levelText.text = "レベル: " + level;
     }
 
     public void UpdateAttackText(float attack)
     {
-        attackText.text = "Attack: " + attack.ToString("F1");
+        attackText.text = "こうげきりょく: " + attack.ToString("F1");
     }
 
     public void UpdateStageText(int stage)
     {
-        stageText.text = "Stage: " + stage;
+        int s = Mathf.Max(1, stage);
+        stageText.text = "ステージ: " + s;
     }
 
     public void OnClickAttack()

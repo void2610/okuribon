@@ -13,6 +13,9 @@ public class StageManager : MonoBehaviour
         other,
     }
 
+    [SerializeField]
+    private int enemyStageNum = 3;
+
 
     public List<StageType> stageTypes = new List<StageType>();
     private int currentStage = -1;
@@ -53,8 +56,37 @@ public class StageManager : MonoBehaviour
         });
     }
 
+    private void DecideStage()
+    {
+        int shopNum = enemyStageNum / 2;
+        stageTypes.Clear();
+        for (int i = 0; i < enemyStageNum + shopNum; i++) stageTypes.Add(StageType.other);
+        Debug.Log("stageTypes.Count: " + stageTypes.Count);
+        for (int i = 0; i < shopNum; i++)
+        {
+            int index = GameManager.instance.RandomRange(1, stageTypes.Count);
+            if (stageTypes[index] == StageType.shop)
+            {
+                i--;
+                continue;
+            }
+            stageTypes[index] = StageType.shop;
+        }
+        Debug.Log("stageTypes.Count: " + stageTypes.Count);
+
+        for (int i = 0; i < stageTypes.Count; i++)
+        {
+            if (stageTypes[i] == StageType.other)
+            {
+                stageTypes[i] = StageType.enemy;
+            }
+        }
+        stageTypes.Add(StageType.boss);
+    }
+
     public void Start()
     {
+        DecideStage();
         GameManager.instance.uiManager.UpdateStageText(currentStage);
     }
 }
