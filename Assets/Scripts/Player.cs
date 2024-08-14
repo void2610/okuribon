@@ -127,27 +127,29 @@ public class Player : MonoBehaviour
     public void Attack(List<EnemyBase> enemies)
     {
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
+        SeManager.instance.PlaySe("enemyAttack");
         int a = Mathf.FloorToInt(attack * (float)save);
         foreach (EnemyBase enemy in enemies)
         {
             enemy.TakeDamage(a);
         }
 
-
-        // 敵を左側に移動させてゆっくり戻す
         this.transform.DOMoveX(0.75f, 0.02f).SetRelative(true).OnComplete(() =>
         {
             this.transform.DOMoveX(-0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
-            if (CheckAndLevelUp())
+            Utils.instance.WaitAndInvoke(1f, () =>
             {
-                GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
-            }
-            else
-            {
-                GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
-            }
-            save = 0;
-            UpdateStatusDisplay();
+                if (CheckAndLevelUp())
+                {
+                    GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+                }
+                else
+                {
+                    GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+                }
+                save = 0;
+                UpdateStatusDisplay();
+            });
         });
     }
 

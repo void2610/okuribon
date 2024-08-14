@@ -120,17 +120,20 @@ public class UIManager : MonoBehaviour
     public void OnClickAttack()
     {
         SeManager.instance.PlaySe("button");
-        StartCoroutine(WaitAndInvoke(0.5f, () => player.Attack(GameManager.instance.enemyContainer.GetAllEnemies())));
+        GameManager.instance.uiManager.EnablePlayerActions(false);
+        Utils.instance.WaitAndInvoke(0.5f, () => player.Attack(GameManager.instance.enemyContainer.GetAllEnemies()));
     }
     public void OnClickSave()
     {
         SeManager.instance.PlaySe("button");
-        StartCoroutine(WaitAndInvoke(0.5f, () => player.EnableSave(true)));
+        GameManager.instance.uiManager.EnablePlayerActions(false);
+        Utils.instance.WaitAndInvoke(0.5f, () => player.EnableSave(true));
     }
     public void OnClickEscape()
     {
         SeManager.instance.PlaySe("button");
-        StartCoroutine(WaitAndInvoke(0.5f, () => GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack)));
+        GameManager.instance.uiManager.EnablePlayerActions(false);
+        Utils.instance.WaitAndInvoke(0.5f, () => GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack));
     }
 
     public void OnClickShopExit()
@@ -180,13 +183,6 @@ public class UIManager : MonoBehaviour
         SeManager.instance.PlaySe("button");
         fadeImage.color = new Color(0, 0, 0, 0);
         fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("TitleScene"));
-    }
-
-    private IEnumerator WaitAndInvoke(float time, System.Action action)
-    {
-        Debug.Log("Wait");
-        yield return new WaitForSeconds(time);
-        action();
     }
 
     void Awake()
