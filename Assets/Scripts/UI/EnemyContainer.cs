@@ -107,6 +107,7 @@ public class EnemyContainer : MonoBehaviour
             // 0.5秒待つ
             yield return new WaitForSeconds(0.5f);
         }
+        GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
     }
 
     public void RemoveEnemy(GameObject enemy)

@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.EnemyAttack:
                 enemyContainer.AttackPlayer(player);
-                ChangeState(GameState.PlayerTurn);
                 break;
             case GameState.LevelUp:
                 uiManager.EnableLevelUpOptions(true);

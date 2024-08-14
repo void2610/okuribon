@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour
 
     public List<StageType> stageTypes = new List<StageType>();
     private int currentStage = -1;
+    private int enemyStageCount = 0;
 
     public void NextStage()
     {
@@ -36,7 +37,8 @@ public class StageManager : MonoBehaviour
             switch (stageTypes[currentStage])
             {
                 case StageType.enemy:
-                    GameManager.instance.enemyContainer.SpawnEnemy();
+                    enemyStageCount++;
+                    GameManager.instance.enemyContainer.SpawnEnemy(enemyStageCount);
                     GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
                     break;
                 case StageType.shop:
@@ -61,7 +63,7 @@ public class StageManager : MonoBehaviour
         int shopNum = enemyStageNum / 2;
         stageTypes.Clear();
         for (int i = 0; i < enemyStageNum + shopNum; i++) stageTypes.Add(StageType.other);
-        Debug.Log("stageTypes.Count: " + stageTypes.Count);
+
         for (int i = 0; i < shopNum; i++)
         {
             int index = GameManager.instance.RandomRange(1, stageTypes.Count);
@@ -72,7 +74,6 @@ public class StageManager : MonoBehaviour
             }
             stageTypes[index] = StageType.shop;
         }
-        Debug.Log("stageTypes.Count: " + stageTypes.Count);
 
         for (int i = 0; i < stageTypes.Count; i++)
         {
