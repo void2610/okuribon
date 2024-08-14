@@ -110,7 +110,8 @@ public class Player : MonoBehaviour
 
         exp -= levelUpExp[level - 1];
         level++;
-        Heal(10);
+        Heal(5);
+        SeManager.instance.PlaySe("levelUp");
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
         GameManager.instance.uiManager.remainingLevelUps++;
