@@ -49,3 +49,9 @@ MonoBehaviour:
   - name: button
     audioClip: {fileID: 8300000, guid: c08019ad0cad74564a6a63b5cc5d583d, type: 3}
     volume: 1
+  - name: enemyAttack
+    audioClip: {fileID: 8300000, guid: 4baad9ed01026450a803bbf172d43d67, type: 3}
+    volume: 1
+  - name: footsteps
+    audioClip: {fileID: 8300000, guid: f53f703a6757f47c2bf54a5152db1b7f, type: 3}
+    volume: 0.5

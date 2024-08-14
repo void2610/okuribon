@@ -2353,22 +2353,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6740438996834902664, guid: 4cdf6d6f4e6ef45dd9227afbeec77b07, type: 3}
-      propertyPath: soundDatas.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6740438996834902664, guid: 4cdf6d6f4e6ef45dd9227afbeec77b07, type: 3}
-      propertyPath: soundDatas.Array.data[1].name
-      value: enemyAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 6740438996834902664, guid: 4cdf6d6f4e6ef45dd9227afbeec77b07, type: 3}
-      propertyPath: soundDatas.Array.data[1].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6740438996834902664, guid: 4cdf6d6f4e6ef45dd9227afbeec77b07, type: 3}
-      propertyPath: soundDatas.Array.data[1].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4baad9ed01026450a803bbf172d43d67, type: 3}
     - target: {fileID: 7521127176204447298, guid: 4cdf6d6f4e6ef45dd9227afbeec77b07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 434.22272

@@ -19,33 +19,38 @@ public class StageManager : MonoBehaviour
 
     public void NextStage()
     {
-        currentStage++;
-        if (currentStage >= stageTypes.Count)
+        SeManager.instance.PlaySe("footsteps");
+        //背景をスクロールさせる
+        Utils.instance.WaitAndInvoke(2.0f, () =>
         {
-            currentStage = 0;
-        }
-        GameManager.instance.uiManager.UpdateStageText(currentStage + 1);
+            currentStage++;
+            if (currentStage >= stageTypes.Count)
+            {
+                currentStage = 0;
+            }
+            GameManager.instance.uiManager.UpdateStageText(currentStage + 1);
 
-        switch (stageTypes[currentStage])
-        {
-            case StageType.enemy:
-                GameManager.instance.enemyContainer.SpawnEnemy();
-                GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
-                break;
-            case StageType.shop:
-                GameManager.instance.ChangeState(GameManager.GameState.Shop);
-                break;
-            case StageType.boss:
-                GameManager.instance.enemyContainer.SpawnBoss();
-                GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
-                break;
-            case StageType.events:
-                GameManager.instance.ChangeState(GameManager.GameState.Other);
-                break;
-            case StageType.other:
-                GameManager.instance.ChangeState(GameManager.GameState.Other);
-                break;
-        }
+            switch (stageTypes[currentStage])
+            {
+                case StageType.enemy:
+                    GameManager.instance.enemyContainer.SpawnEnemy();
+                    GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
+                    break;
+                case StageType.shop:
+                    GameManager.instance.ChangeState(GameManager.GameState.Shop);
+                    break;
+                case StageType.boss:
+                    GameManager.instance.enemyContainer.SpawnBoss();
+                    GameManager.instance.ChangeState(GameManager.GameState.PlayerTurn);
+                    break;
+                case StageType.events:
+                    GameManager.instance.ChangeState(GameManager.GameState.Other);
+                    break;
+                case StageType.other:
+                    GameManager.instance.ChangeState(GameManager.GameState.Other);
+                    break;
+            }
+        });
     }
 
     public void Start()

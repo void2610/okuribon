@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 750, y: 300}
   font: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
-  fontSize: 50
+  fontSize: 55
   position: {x: 0, y: -150}
 --- !u!1 &2217076068870331858
 GameObject:

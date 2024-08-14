@@ -110,7 +110,7 @@ public class EnemyBase : MonoBehaviour
         healthSlider.value = health;
         healthText.text = health + "/" + maxHealth;
 
-        enemyActions.Add(new AttackData { name = "こうげき", action = NormalAttack, probability = 0.8f, color = Color.red, description = "いたいぞ！" });
+        enemyActions.Add(new AttackData { name = "こうげき", action = NormalAttack, probability = 0.8f, color = Color.red, description = "いたい！" });
         enemyActions.Add(new AttackData { name = "かんつう\nこうげき", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "ためることができない" });
 
         DecideNextAction();
