@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         saveText.text = save + "/" + maxSave;
 
         var emission = saveEffect.emission;
-        emission.rateOverTime = ((float)save / (float)maxSave) * 25;
+        emission.rateOverTime = ((float)save / (float)maxSave) * 15;
     }
 
     public void TakeDamage(int damage)
@@ -133,6 +133,12 @@ public class Player : MonoBehaviour
     public void Attack(List<EnemyBase> enemies)
     {
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
+        if (save <= 0)
+        {
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+            return;
+        }
+
         SeManager.instance.PlaySe("enemyAttack");
         int a = Mathf.FloorToInt(attack * (float)save);
         foreach (EnemyBase enemy in enemies)
@@ -140,6 +146,7 @@ public class Player : MonoBehaviour
             enemy.TakeDamage(a);
         }
 
+        Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
         this.transform.DOMoveX(0.75f, 0.02f).SetRelative(true).OnComplete(() =>
         {
             this.transform.DOMoveX(-0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
