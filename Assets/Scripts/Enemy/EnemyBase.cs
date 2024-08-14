@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -64,6 +65,26 @@ public class EnemyBase : MonoBehaviour
         DecideNextAction();
     }
 
+    public void OnAppear()
+    {
+        CanvasGroup cg = canvas.GetComponent<CanvasGroup>();
+        cg.DOFade(1, 0.5f);
+        this.GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+    }
+
+    public void OnDisappear()
+    {
+        CanvasGroup cg = canvas.GetComponent<CanvasGroup>();
+        cg.DOFade(0, 0.5f);
+        // ゆらゆらと左右に揺れながら上に登っていく
+        this.transform.DOPunchPosition(new Vector3(0.5f, 0, 0), 2f, 3, 1f).SetRelative(true);
+        this.transform.DOMoveY(1, 2f).SetRelative(true);
+        this.GetComponent<SpriteRenderer>().DOFade(0, 2f).OnComplete(() =>
+        {
+            Destroy(this.transform.parent.gameObject);
+        });
+    }
+
     private void DecideNextAction()
     {
         float sum = 0;
@@ -105,6 +126,8 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        canvas.GetComponent<CanvasGroup>().alpha = 0;
         nameText.text = enemyName;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;
@@ -114,6 +137,7 @@ public class EnemyBase : MonoBehaviour
         enemyActions.Add(new AttackData { name = "かんつう\nこうげき", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "ためることができない" });
 
         DecideNextAction();
+        OnAppear();
     }
 
     protected virtual void Update()

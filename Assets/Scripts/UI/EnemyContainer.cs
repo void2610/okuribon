@@ -115,7 +115,7 @@ public class EnemyContainer : MonoBehaviour
         GameManager.instance.player.AddGold(enemy.GetComponent<EnemyBase>().gold);
         GameObject g = enemy.transform.parent.gameObject;
         currentEnemies.Remove(g);
-        Destroy(g);
+        enemy.GetComponent<EnemyBase>().OnDisappear();
     }
 
     void Awake()

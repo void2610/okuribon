@@ -77,6 +77,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6067260938256618329}
   m_SourcePrefab: {fileID: 100100000, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+--- !u!1 &2844875816686609182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209736915883113106, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+  m_PrefabInstance: {fileID: 6391885046365018508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7547074522902882716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3461035964698275856, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
@@ -101,4 +106,4 @@ MonoBehaviour:
   defense: 1
   gold: 0
   exp: 0
-  canvas: {fileID: 0}
+  canvas: {fileID: 2844875816686609182}

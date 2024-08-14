@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2722257850165490191, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+      propertyPath: m_Size.x
+      value: 0.65625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722257850165490191, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+      propertyPath: m_Size.y
+      value: 0.96875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722257850165490191, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6062960654814887708, guid: 1ae54d83c367b984c9ab66b93a5ca6e4, type: 3}
+    - target: {fileID: 2722257850165490191, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4464284929046212910, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7954668992148410542, guid: b0b80f53ef9ac4896a8ac0e696191256, type: 3}
       propertyPath: m_Name
-      value: EnemyBase
+      value: Soul
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

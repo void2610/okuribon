@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
         health -= damage;
         if (health <= 0)
         {
@@ -138,6 +139,8 @@ public class Player : MonoBehaviour
         this.transform.DOMoveX(0.75f, 0.02f).SetRelative(true).OnComplete(() =>
         {
             this.transform.DOMoveX(-0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
+            save = 0;
+            UpdateStatusDisplay();
             Utils.instance.WaitAndInvoke(1f, () =>
             {
                 if (CheckAndLevelUp())
@@ -148,8 +151,7 @@ public class Player : MonoBehaviour
                 {
                     GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
                 }
-                save = 0;
-                UpdateStatusDisplay();
+
             });
         });
     }
