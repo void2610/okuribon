@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3053\u3046\u3052\u304D \u308A\u3087\u304F"
+  m_text: "\u3053\u3046\u3052\u304D\n\u308A\u3087\u304F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -2097,7 +2097,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.09434
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
