@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
+            if (PlayerPrefs.GetString("SeedText", "") == "")
             {
                 seed = (int)DateTime.Now.Ticks;
                 Debug.Log("Random");

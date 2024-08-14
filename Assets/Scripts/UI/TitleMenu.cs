@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using TMPro;
 
 public class TitleMenu : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TitleMenu : MonoBehaviour
     private Slider bgmSlider;
     [SerializeField]
     private Slider seSlider;
+    [SerializeField]
+    private TMP_InputField seedInputField;
 
     public void StartGame()
     {
@@ -33,6 +36,9 @@ public class TitleMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("BgmVolume", 1.0f);
         PlayerPrefs.SetFloat("SeVolume", 1.0f);
+
+        PlayerPrefs.SetInt("Seed", 0);
+        PlayerPrefs.SetString("SeedText", "");
     }
     public void ResetSetting()
     {
@@ -51,6 +57,8 @@ public class TitleMenu : MonoBehaviour
     {
         bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
         seSlider.value = PlayerPrefs.GetFloat("SeVolume", 1.0f);
+
+        seedInputField.text = PlayerPrefs.GetString("SeedText", "");
 
         bgmSlider.onValueChanged.AddListener((value) =>
         {
@@ -77,6 +85,8 @@ public class TitleMenu : MonoBehaviour
 
     void Update()
     {
-
+        int seed = seedInputField.text.GetHashCode();
+        PlayerPrefs.SetInt("Seed", seed);
+        PlayerPrefs.SetString("SeedText", seedInputField.text);
     }
 }
