@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -119,17 +120,17 @@ public class UIManager : MonoBehaviour
     public void OnClickAttack()
     {
         SeManager.instance.PlaySe("button");
-        player.Attack(GameManager.instance.enemyContainer.GetAllEnemies());
+        StartCoroutine(WaitAndInvoke(0.5f, () => player.Attack(GameManager.instance.enemyContainer.GetAllEnemies())));
     }
     public void OnClickSave()
     {
         SeManager.instance.PlaySe("button");
-        player.EnableSave(true);
+        StartCoroutine(WaitAndInvoke(0.5f, () => player.EnableSave(true)));
     }
     public void OnClickEscape()
     {
         SeManager.instance.PlaySe("button");
-        GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+        StartCoroutine(WaitAndInvoke(0.5f, () => GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack)));
     }
 
     public void OnClickShopExit()
@@ -179,6 +180,13 @@ public class UIManager : MonoBehaviour
         SeManager.instance.PlaySe("button");
         fadeImage.color = new Color(0, 0, 0, 0);
         fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("TitleScene"));
+    }
+
+    private IEnumerator WaitAndInvoke(float time, System.Action action)
+    {
+        Debug.Log("Wait");
+        yield return new WaitForSeconds(time);
+        action();
     }
 
     void Awake()

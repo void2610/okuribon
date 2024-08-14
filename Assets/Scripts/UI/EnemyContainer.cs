@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyContainer : MonoBehaviour
 {
@@ -87,10 +88,24 @@ public class EnemyContainer : MonoBehaviour
 
     public void AttackPlayer(Player player)
     {
+        StartCoroutine(AttackPlayerCoroutine(player));
+    }
+
+    private IEnumerator AttackPlayerCoroutine(Player player)
+    {
         foreach (GameObject enemy in currentEnemies)
         {
+            // 敵を左側に移動させてゆっくり戻す
+            enemy.transform.GetChild(0).transform.DOMoveX(-0.75f, 0.02f).SetRelative(true).OnComplete(() =>
+            {
+                enemy.transform.GetChild(0).transform.DOMoveX(0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
+            });
+            SeManager.instance.PlaySe("enemyAttack");
             EnemyBase enemyBase = enemy.transform.GetChild(0).GetComponent<EnemyBase>();
             enemyBase.Attack(player);
+
+            // 0.5秒待つ
+            yield return new WaitForSeconds(0.5f);
         }
     }
 

@@ -9,7 +9,7 @@ public class Boss : EnemyBase
 
     protected override void Awake()
     {
-        enemyName = "Boss";
+        enemyName = "ボス";
         health = 100;
         maxHealth = 100;
         attack = 10;
@@ -18,11 +18,11 @@ public class Boss : EnemyBase
         exp = 100;
         enemyActions.Add(new AttackData
         {
-            name = "BossAttack",
+            name = "ボスこうげき",
             action = BossAttack,
             probability = 0.2f,
             color = Color.black,
-            description = "tuyoi",
+            description = "つよいよ",
         });
 
         base.Awake();

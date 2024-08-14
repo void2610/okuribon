@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class Player : MonoBehaviour
 
     public bool isSaving { get; private set; } = false;
 
-    private TextMeshProUGUI healthText => transform.Find("Canvas").transform.Find("HPText").GetComponent<TextMeshProUGUI>();
-    private Slider healthSlider => transform.Find("Canvas").transform.Find("HPSlider").GetComponent<Slider>();
-    private TextMeshProUGUI saveText => transform.Find("Canvas").transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
-    private Slider saveSlider => transform.Find("Canvas").transform.Find("SaveSlider").GetComponent<Slider>();
+    [SerializeField]
+    private GameObject canvas;
+
+    private TextMeshProUGUI healthText => canvas.transform.Find("HPText").GetComponent<TextMeshProUGUI>();
+    private Slider healthSlider => canvas.transform.Find("HPSlider").GetComponent<Slider>();
+    private TextMeshProUGUI saveText => canvas.transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
+    private Slider saveSlider => canvas.transform.Find("SaveSlider").GetComponent<Slider>();
 
     public void UpdateStatusDisplay()
     {
@@ -45,7 +49,6 @@ public class Player : MonoBehaviour
 
     public void AddSaveFromEnemy(int amount)
     {
-        Debug.Log(save + amount);
         if (save + amount > maxSave)
         {
             TakeDamage(save + amount);
@@ -129,17 +132,23 @@ public class Player : MonoBehaviour
         {
             enemy.TakeDamage(a);
         }
-        if (CheckAndLevelUp())
-        {
-            GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
-        }
-        else
-        {
-            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
-        }
 
-        save = 0;
-        UpdateStatusDisplay();
+
+        // 敵を左側に移動させてゆっくり戻す
+        this.transform.DOMoveX(0.75f, 0.02f).SetRelative(true).OnComplete(() =>
+        {
+            this.transform.DOMoveX(-0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
+            if (CheckAndLevelUp())
+            {
+                GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+            }
+            else
+            {
+                GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+            }
+            save = 0;
+            UpdateStatusDisplay();
+        });
     }
 
     public void EnableSave(bool enable)
