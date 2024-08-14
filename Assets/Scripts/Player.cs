@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private Slider healthSlider => canvas.transform.Find("HPSlider").GetComponent<Slider>();
     private TextMeshProUGUI saveText => canvas.transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
     private Slider saveSlider => canvas.transform.Find("SaveSlider").GetComponent<Slider>();
+    private ParticleSystem saveEffect => this.transform.parent.transform.Find("SaveParticle").GetComponent<ParticleSystem>();
 
     public void UpdateStatusDisplay()
     {
@@ -35,6 +36,9 @@ public class Player : MonoBehaviour
         saveSlider.maxValue = maxSave;
         saveSlider.value = save;
         saveText.text = save + "/" + maxSave;
+
+        var emission = saveEffect.emission;
+        emission.rateOverTime = ((float)save / (float)maxSave) * 25;
     }
 
     public void TakeDamage(int damage)
