@@ -115,7 +115,6 @@ public class Player : MonoBehaviour
 
         exp -= levelUpExp[level - 1];
         level++;
-        Heal(5);
         SeManager.instance.PlaySe("levelUp");
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
@@ -182,7 +181,7 @@ public class Player : MonoBehaviour
 
     public void GrowAttack()
     {
-        attack++;
+        attack += 0.5f;
         GameManager.instance.uiManager.UpdateAttackText(attack);
         UpdateStatusDisplay();
     }
@@ -195,8 +194,8 @@ public class Player : MonoBehaviour
 
     public void GrowHp()
     {
-        maxHealth += 10;
-        health += 10;
+        maxHealth += 5;
+        health += 5;
         UpdateStatusDisplay();
     }
 

@@ -15,7 +15,7 @@ public class Slime : EnemyBase
         maxHealth = 10;
         attack = 1;
         defense = 0;
-        gold = 1;
+        gold = 2;
         exp = 10;
         enemyActions.Add(new AttackData
         {

@@ -10,14 +10,14 @@ public class Boss : EnemyBase
 
     protected virtual void PiercingAttack(Player player)
     {
-        player.TakeDamage(attack);
+        player.TakeDamage(attack / 2);
     }
 
     protected override void Awake()
     {
         enemyName = "???";
-        health = 50;
-        maxHealth = 50;
+        health = 75;
+        maxHealth = 75;
         attack = 5;
         defense = 0;
         gold = 50;

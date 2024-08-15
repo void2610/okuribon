@@ -2892,7 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5c4297ff24a48ed8fc14704acca3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStageNum: 3
+  enemyStageNum: 5
   m: {fileID: 2100000, guid: 205eac1d1390d4c249ad33b8bea4d564, type: 2}
   stageTypes: 
 --- !u!1 &619394800
@@ -7280,10 +7280,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
-  attack: 999
+  attack: 1.5
   gold: 0
   exp: 0
-  levelUpExp: 0a000000140000002800000050000000a0000000400100008002000000050000000a000000140000
+  levelUpExp: 0a000000140000001e00000028000000320000003c00000046000000500000005a00000064000000
   level: 1
   maxSave: 5
   save: 0
