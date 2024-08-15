@@ -57,4 +57,7 @@ MonoBehaviour:
     volume: 0.5
   - name: levelUp
     audioClip: {fileID: 8300000, guid: 95c4e103e2acb4452909a5749af0bd53, type: 3}
-    volume: 0.8
+    volume: 0.6
+  - name: coin
+    audioClip: {fileID: 8300000, guid: d9e708257b4ef49e7b16ecbc4cd83d6b, type: 3}
+    volume: 1

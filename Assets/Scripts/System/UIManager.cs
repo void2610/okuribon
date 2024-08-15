@@ -41,10 +41,18 @@ public class UIManager : MonoBehaviour
         if (e)
         {
             playerActions.interactable = true;
+            foreach (Transform child in playerActions.transform)
+            {
+                child.GetComponent<TweenButton>().CheckMouseAndTween();
+            }
         }
         else
         {
             playerActions.interactable = false;
+            foreach (Transform child in playerActions.transform)
+            {
+                child.GetComponent<TweenButton>().ResetScale();
+            }
         }
     }
 

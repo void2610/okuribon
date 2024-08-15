@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 622079245}
   - component: {fileID: 622079244}
   - component: {fileID: 622079243}
+  - component: {fileID: 622079247}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -893,6 +894,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &622079247
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622079242}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &664686111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1278,7 @@ SpriteRenderer:
   m_Size: {x: 30, y: 16.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1036772195
@@ -1431,6 +1444,7 @@ GameObject:
   - component: {fileID: 1234183046}
   - component: {fileID: 1234183045}
   - component: {fileID: 1234183044}
+  - component: {fileID: 1234183047}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1552,6 +1566,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234183042}
   m_CullTransparentMesh: 1
+--- !u!114 &1234183047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234183042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5741a6dd1ce4ee89a5e39106923108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenByPointer: 1
+  tweenByClick: 0
+  scale: 1.1
+  duration: 0.5
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &1242199263
 GameObject:
   m_ObjectHideFlags: 0

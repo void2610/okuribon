@@ -73,7 +73,7 @@ public class Shop : MonoBehaviour
                     item.Use(GameManager.instance.player);
                     Destroy(g);
                     currentItems.Remove(g);
-                    SeManager.instance.PlaySe("buy");
+                    SeManager.instance.PlaySe("coin");
                 }
                 else
                 {
