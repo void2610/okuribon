@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject playerObj;
     [SerializeField]
+    public PlayerAnimation playerAnimation;
+    [SerializeField]
     public EnemyContainer enemyContainer;
     [SerializeField]
     public Shop shop;
@@ -127,16 +129,20 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerTurn:
                 uiManager.EnablePlayerActions(true);
                 player.EnableSave(false);
+                playerAnimation.ChangeAnimation("stand");
                 break;
             case GameState.PlayerAttack:
+                playerAnimation.ChangeAnimation("sword");
                 break;
             case GameState.EnemyAttack:
+                playerAnimation.ChangeAnimation("stand");
                 enemyContainer.AttackPlayer(player);
                 break;
             case GameState.LevelUp:
                 uiManager.EnableLevelUpOptions(true);
                 break;
             case GameState.StageMoving:
+                playerAnimation.ChangeAnimation("move");
                 stageManager.NextStage();
                 break;
             case GameState.Shop:

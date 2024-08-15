@@ -2852,6 +2852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playerObj: {fileID: 1993390309}
+  playerAnimation: {fileID: 865019286}
   enemyContainer: {fileID: 198190389}
   shop: {fileID: 1489068727}
 --- !u!114 &567445624
@@ -3552,6 +3553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865019283}
   - component: {fileID: 865019284}
+  - component: {fileID: 865019286}
   - component: {fileID: 865019285}
   m_Layer: 0
   m_Name: PlayerSprite
@@ -3652,6 +3654,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &865019286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865019282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f410ea55fb71482482eaa676823232e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stand: {fileID: 9100000, guid: 5f7e1a710539edb46812b913cdd6944c, type: 2}
+  sword: {fileID: 9100000, guid: 537116ccfc5175c4dae6ced24c5eaf1c, type: 2}
+  gun: {fileID: 9100000, guid: b992803cc13844c49b47fd3f8561f575, type: 2}
+  move: {fileID: 9100000, guid: dc34a7eefecdea942a6ce6c1a9d24f86, type: 2}
 --- !u!1 &869277085
 GameObject:
   m_ObjectHideFlags: 0
