@@ -8,6 +8,11 @@ public class Boss : EnemyBase
         //なんか攻撃する
     }
 
+    protected virtual void PiercingAttack(Player player)
+    {
+        player.TakeDamage(attack);
+    }
+
     protected override void Awake()
     {
         enemyName = "???";
@@ -17,12 +22,22 @@ public class Boss : EnemyBase
         defense = 0;
         gold = 50;
         exp = 0;
+
         enemyActions.Add(new AttackData
         {
-            name = "ボスこうげき",
+            name = "かんつう\nこうげき",
+            action = PiercingAttack,
+            probability = 0.2f,
+            color = Color.yellow,
+            description = "ためることができない",
+        });
+        enemyActions.Add(new AttackData
+        {
+            name = "???",
             action = BossAttack,
             probability = 0.2f,
-            color = Color.black,
+            //水色 #82dcff
+            color = new Color(0.509f, 0.863f, 1f),
             description = "つよいよ",
         });
 

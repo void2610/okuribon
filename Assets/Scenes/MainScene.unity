@@ -7206,7 +7206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
-  attack: 999
+  attack: 1.5
   gold: 0
   exp: 0
   levelUpExp: 0a000000140000002800000050000000a0000000400100008002000000050000000a000000140000

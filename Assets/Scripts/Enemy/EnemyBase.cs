@@ -114,11 +114,6 @@ public class EnemyBase : MonoBehaviour
         else player.TakeDamage(attack);
     }
 
-    protected virtual void PiercingAttack(Player player)
-    {
-        player.TakeDamage(attack);
-    }
-
     public void Death()
     {
         this.transform.parent.parent.GetComponent<EnemyContainer>().RemoveEnemy(this.gameObject);
@@ -134,7 +129,6 @@ public class EnemyBase : MonoBehaviour
         healthText.text = health + "/" + maxHealth;
 
         enemyActions.Add(new AttackData { name = "こうげき", action = NormalAttack, probability = 0.8f, color = Color.red, description = "いたい！" });
-        enemyActions.Add(new AttackData { name = "かんつう\nこうげき", action = PiercingAttack, probability = 0.2f, color = Color.yellow, description = "ためることができない" });
 
         DecideNextAction();
         OnAppear();
