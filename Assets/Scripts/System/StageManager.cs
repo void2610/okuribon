@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class StageManager : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class StageManager : MonoBehaviour
 
     [SerializeField]
     private int enemyStageNum = 3;
+    [SerializeField]
+    private Material m;
 
 
     public List<StageType> stageTypes = new List<StageType>();
@@ -29,6 +33,10 @@ public class StageManager : MonoBehaviour
     public void NextStage()
     {
         SeManager.instance.PlaySe("footsteps");
+        DOTween.To(() => m.GetTextureOffset("_MainTex"), x => m.SetTextureOffset("_MainTex", x), new Vector2(1, 0), 2.0f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            m.SetTextureOffset("_MainTex", new Vector2(0, 0));
+        });
         //背景をスクロールさせる
         Utils.instance.WaitAndInvoke(2.0f, () =>
         {

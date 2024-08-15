@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
                 enemyContainer.AttackPlayer(player);
                 break;
             case GameState.LevelUp:
+                playerAnimation.ChangeAnimation("stand");
                 uiManager.EnableLevelUpOptions(true);
                 break;
             case GameState.StageMoving:
@@ -146,16 +147,20 @@ public class GameManager : MonoBehaviour
                 stageManager.NextStage();
                 break;
             case GameState.Shop:
+                playerAnimation.ChangeAnimation("stand");
                 shop.SetItem(3);
                 uiManager.EnableShopOptions(true);
                 break;
             case GameState.GameOver:
+                playerAnimation.ChangeAnimation("stand");
                 uiManager.EnableGameOver(true);
                 break;
             case GameState.Clear:
+                playerAnimation.ChangeAnimation("stand");
                 uiManager.EnableClear(true);
                 break;
             case GameState.Other:
+                playerAnimation.ChangeAnimation("stand");
                 break;
         }
     }
