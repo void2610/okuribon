@@ -43,6 +43,7 @@ public class BgmManager : MonoBehaviour
             volume = value;
             PlayerPrefs.SetFloat("BgmVolume", value);
             mixer.SetFloat("BgmVolume", Mathf.Log10(value) * 20);
+            audioSource.volume = currentBGM.volume;
         }
     }
 

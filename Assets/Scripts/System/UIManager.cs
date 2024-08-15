@@ -2,11 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private Slider bgmSlider;
+    [SerializeField]
+    private Slider seSlider;
     [SerializeField]
     private Image fadeImage;
     [SerializeField]
@@ -239,6 +244,9 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
+        seSlider.value = PlayerPrefs.GetFloat("SeVolume", 1.0f);
+
         EnablePlayerActions(false);
         EnableLevelUpOptions(false);
         EnableShopOptions(false);
@@ -249,6 +257,26 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        bgmSlider.onValueChanged.AddListener((value) =>
+        {
+            BgmManager.instance.BgmVolume = value;
+        });
+
+        seSlider.onValueChanged.AddListener((value) =>
+        {
+            SeManager.instance.SeVolume = value;
+        });
+
+        var trigger = seSlider.gameObject.AddComponent<EventTrigger>();
+        var entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerUp;
+        entry.callback.AddListener(new UnityEngine.Events.UnityAction<BaseEventData>((data) =>
+        {
+            SeManager.instance.PlaySe("button");
+        }));
+        trigger.triggers.Add(entry);
+
+
         fadeImage.color = new Color(0, 0, 0, 1);
         fadeImage.DOFade(0, 1f);
     }
