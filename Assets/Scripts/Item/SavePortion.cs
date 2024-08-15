@@ -11,7 +11,7 @@ public class SavePortion : ItemBase
     {
         itemName = "あおいおふだ";
         price = 5;
-        description = "ためた値を10ふやす";
+        description = "ようりょくを\n10ふやす";
 
         base.Awake();
     }

@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3088\u3046\u308A\u3087\u3046"
+  m_text: "\u3088\u3046\u308A\u3087\u304F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -1911,7 +1911,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403790021}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
