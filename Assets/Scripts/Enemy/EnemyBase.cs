@@ -39,11 +39,23 @@ public class EnemyBase : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if (health <= 1)
+        {
+            health = 1;
+        }
+        healthSlider.value = health;
+        healthText.text = health + "/" + maxHealth;
+    }
+
+    public void TakeDamageFromReturn(int damage)
+    {
+        health -= damage;
         healthSlider.value = health;
         healthText.text = health + "/" + maxHealth;
         if (health <= 0)
         {
             health = 0;
+            healthText.text = health + "/" + maxHealth;
             Death();
         }
     }

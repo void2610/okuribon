@@ -132,26 +132,20 @@ public class Player : MonoBehaviour
     public void Attack(List<EnemyBase> enemies)
     {
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
-        if (save <= 0)
-        {
-            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
-            return;
-        }
+        GameManager.instance.playerAnimation.ChangeAnimation("sword");
 
-        SeManager.instance.PlaySe("enemyAttack");
-        int a = Mathf.FloorToInt(attack * (float)save);
-        foreach (EnemyBase enemy in enemies)
+        Utils.instance.WaitAndInvoke(1f, () =>
         {
-            enemy.TakeDamage(a);
-        }
-
-        Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
-        this.transform.DOMoveX(0.75f, 0.02f).SetRelative(true).OnComplete(() =>
-        {
-            this.transform.DOMoveX(-0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
-            save = 0;
+            SeManager.instance.PlaySe("enemyAttack");
+            int a = Mathf.FloorToInt((float)attack);
+            foreach (EnemyBase enemy in enemies)
+            {
+                enemy.TakeDamage(a);
+            }
+            Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
             UpdateStatusDisplay();
-            Utils.instance.WaitAndInvoke(1f, () =>
+            GameManager.instance.playerAnimation.ChangeAnimation("stand");
+            Utils.instance.WaitAndInvoke(1.5f, () =>
             {
                 if (CheckAndLevelUp())
                 {
@@ -161,7 +155,43 @@ public class Player : MonoBehaviour
                 {
                     GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
                 }
+            });
+        });
+    }
 
+    public void Return(List<EnemyBase> enemies)
+    {
+        GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
+        if (save <= 0)
+        {
+            GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+            return;
+        }
+
+        GameManager.instance.playerAnimation.ChangeAnimation("sword");
+
+        Utils.instance.WaitAndInvoke(1f, () =>
+        {
+            SeManager.instance.PlaySe("enemyAttack");
+            int a = Mathf.FloorToInt(attack * (float)save);
+            foreach (EnemyBase enemy in enemies)
+            {
+                enemy.TakeDamageFromReturn(a);
+            }
+            Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
+            save = 0;
+            UpdateStatusDisplay();
+            GameManager.instance.playerAnimation.ChangeAnimation("stand");
+            Utils.instance.WaitAndInvoke(1.5f, () =>
+            {
+                if (CheckAndLevelUp())
+                {
+                    GameManager.instance.ChangeState(GameManager.GameState.LevelUp);
+                }
+                else
+                {
+                    GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack);
+                }
             });
         });
     }

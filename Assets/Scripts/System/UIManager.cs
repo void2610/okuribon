@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup clear;
     [SerializeField]
+    private CanvasGroup tutorial;
+    [SerializeField]
     private TextMeshProUGUI coinText;
     [SerializeField]
     private TextMeshProUGUI expText;
@@ -141,6 +143,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void EnableTutorial(bool e)
+    {
+        if (e)
+        {
+            tutorial.alpha = 1;
+            tutorial.interactable = true;
+            tutorial.blocksRaycasts = true;
+        }
+        else
+        {
+            tutorial.alpha = 0;
+            tutorial.interactable = false;
+            tutorial.blocksRaycasts = false;
+        }
+    }
+
     public void UpdateCoinText(int amount)
     {
         coinText.text = "おかね: " + amount.ToString();
@@ -179,11 +197,11 @@ public class UIManager : MonoBehaviour
         GameManager.instance.uiManager.EnablePlayerActions(false);
         Utils.instance.WaitAndInvoke(0.5f, () => player.EnableSave(true));
     }
-    public void OnClickEscape()
+    public void OnClickReturn()
     {
         SeManager.instance.PlaySe("button");
         GameManager.instance.uiManager.EnablePlayerActions(false);
-        Utils.instance.WaitAndInvoke(0.5f, () => GameManager.instance.ChangeState(GameManager.GameState.EnemyAttack));
+        Utils.instance.WaitAndInvoke(0.5f, () => player.Return(GameManager.instance.enemyContainer.GetAllEnemies()));
     }
 
     public void OnClickShopExit()
@@ -222,10 +240,17 @@ public class UIManager : MonoBehaviour
         EnablePauseMenu(true);
     }
 
+    public void OnClickTutorial()
+    {
+        SeManager.instance.PlaySe("button");
+        EnableTutorial(true);
+    }
+
     public void OnClickResume()
     {
         SeManager.instance.PlaySe("button");
         EnablePauseMenu(false);
+        EnableTutorial(false);
     }
 
     public void OnClickTitle()
@@ -253,6 +278,8 @@ public class UIManager : MonoBehaviour
         EnablePauseMenu(false);
         EnableGameOver(false);
         EnableClear(false);
+
+        EnableTutorial(true);
     }
 
     private void Start()

@@ -132,7 +132,6 @@ public class GameManager : MonoBehaviour
                 playerAnimation.ChangeAnimation("stand");
                 break;
             case GameState.PlayerAttack:
-                playerAnimation.ChangeAnimation("sword");
                 break;
             case GameState.EnemyAttack:
                 playerAnimation.ChangeAnimation("stand");
