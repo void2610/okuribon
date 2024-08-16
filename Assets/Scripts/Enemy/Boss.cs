@@ -3,9 +3,9 @@ using DG.Tweening;
 
 public class Boss : EnemyBase
 {
-    private void BossAttack(Player player)
+    private void CallSoul(Player player)
     {
-        //なんか攻撃する
+        GameManager.instance.enemyContainer.SpawnEnemyByBoss(1);
     }
 
     protected virtual void PiercingAttack(Player player)
@@ -27,18 +27,18 @@ public class Boss : EnemyBase
         {
             name = "かんつう\nこうげき",
             action = PiercingAttack,
-            probability = 0.2f,
+            probability = 0.5f,
             color = Color.yellow,
             description = "ためることができない",
         });
         enemyActions.Add(new AttackData
         {
-            name = "???",
-            action = BossAttack,
-            probability = 0.2f,
+            name = "よぶ",
+            action = CallSoul,
+            probability = 0.5f,
             //水色 #82dcff
             color = new Color(0.509f, 0.863f, 1f),
-            description = "つよいよ",
+            description = "タマシイをよぶ",
         });
 
         base.Awake();

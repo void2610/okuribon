@@ -34,13 +34,13 @@ public class TweenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (tweenByPointer && canvasGroup.interactable && GameManager.instance.state == GameManager.GameState.PlayerTurn)
+        if (tweenByPointer && canvasGroup.interactable)
             this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (tweenByPointer && canvasGroup.interactable && GameManager.instance.state == GameManager.GameState.PlayerTurn)
+        if (tweenByPointer && canvasGroup.interactable)
             this.transform.DOScale(defaultScale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
     }
 

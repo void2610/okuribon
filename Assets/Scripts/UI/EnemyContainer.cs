@@ -86,6 +86,35 @@ public class EnemyContainer : MonoBehaviour
         }
     }
 
+    public void SpawnEnemyByBoss(int count = 1)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (currentEnemies.Count >= enemyNum) return;
+            float total = 0;
+            foreach (EnemyData enemyData in enemies)
+            {
+                total += enemyData.probability;
+            }
+            float randomPoint = GameManager.instance.RandomRange(0.0f, total);
+
+            foreach (EnemyData enemyData in enemies)
+            {
+                if (randomPoint < enemyData.probability)
+                {
+                    var e = Instantiate(enemyData.prefab, this.transform);
+                    currentEnemies.Add(e);
+                    if (currentEnemies.Count == 2)
+                        e.transform.position = positions[0];
+                    else if (currentEnemies.Count == 3)
+                        e.transform.position = positions[2];
+                    break;
+                }
+                randomPoint -= enemyData.probability;
+            }
+        }
+    }
+
     public void AttackPlayer(Player player)
     {
         StartCoroutine(AttackPlayerCoroutine(player));
@@ -93,8 +122,9 @@ public class EnemyContainer : MonoBehaviour
 
     private IEnumerator AttackPlayerCoroutine(Player player)
     {
-        foreach (GameObject enemy in currentEnemies)
+        for (int i = 0; i < currentEnemies.Count; i++)
         {
+            GameObject enemy = currentEnemies[i];
             // 敵を左側に移動させてゆっくり戻す
             enemy.transform.GetChild(0).transform.DOMoveX(-0.75f, 0.02f).SetRelative(true).OnComplete(() =>
             {
