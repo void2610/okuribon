@@ -336,3 +336,4 @@ MonoBehaviour:
   gold: 0
   exp: 0
   canvas: {fileID: 2844875816686609182}
+  damageTextPrefab: {fileID: 7173658914585924005, guid: 5b2e5a78c499b4e15b5f9834158131b8, type: 3}

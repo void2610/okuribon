@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup tutorial;
     [SerializeField]
+    private CanvasGroup story;
+    [SerializeField]
     private TextMeshProUGUI coinText;
     [SerializeField]
     private TextMeshProUGUI expText;
@@ -159,6 +161,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void EnableStory(bool e)
+    {
+        if (e)
+        {
+            story.alpha = 1;
+            story.interactable = true;
+            story.blocksRaycasts = true;
+        }
+        else
+        {
+            story.alpha = 0;
+            story.interactable = false;
+            story.blocksRaycasts = false;
+        }
+    }
+
     public void UpdateCoinText(int amount)
     {
         coinText.text = "おかね: " + amount.ToString();
@@ -267,6 +285,16 @@ public class UIManager : MonoBehaviour
         fadeImage.DOFade(1f, 1f).OnComplete(() => SceneManager.LoadScene("MainScene"));
     }
 
+    public void OnClickNext()
+    {
+        SeManager.instance.PlaySe("button");
+        fadeImage.DOFade(1f, 1f).OnComplete(() =>
+        {
+            EnableStory(false);
+            fadeImage.DOFade(0, 1f);
+        });
+    }
+
     void Awake()
     {
         bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
@@ -280,6 +308,7 @@ public class UIManager : MonoBehaviour
         EnableClear(false);
 
         EnableTutorial(true);
+        EnableStory(true);
     }
 
     private void Start()
@@ -305,7 +334,7 @@ public class UIManager : MonoBehaviour
 
 
         fadeImage.color = new Color(0, 0, 0, 1);
-        fadeImage.DOFade(0, 1f);
+        fadeImage.DOFade(0, 2f);
     }
 
     void Update()

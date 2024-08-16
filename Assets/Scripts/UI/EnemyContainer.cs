@@ -157,6 +157,8 @@ public class EnemyContainer : MonoBehaviour
     }
     void Update()
     {
+        // エディタだけ
+        if (!Application.isEditor) return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnEnemy();
