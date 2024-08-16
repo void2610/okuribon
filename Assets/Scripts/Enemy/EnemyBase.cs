@@ -28,6 +28,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField]
     private GameObject canvas;
 
+    protected int hMax = 100;
+    protected int hMin = 1;
     protected List<AttackData> enemyActions = new List<AttackData>();
     private AttackData nextAction;
 
@@ -133,6 +135,9 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        maxHealth = GameManager.instance.RandomRange(hMin, hMax);
+        health = maxHealth;
+
         this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         canvas.GetComponent<CanvasGroup>().alpha = 0;
         nameText.text = enemyName;

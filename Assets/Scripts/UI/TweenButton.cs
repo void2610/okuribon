@@ -63,7 +63,10 @@ public class TweenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         pointerEventData.position = Input.mousePosition;
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(pointerEventData, results);
-
+        if (results.Count == 0)
+        {
+            return;
+        }
         // UI要素にヒットしたか確認
         if (results[0].gameObject == this.gameObject || results[0].gameObject.transform.IsChildOf(this.transform))
         {

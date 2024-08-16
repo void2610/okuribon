@@ -3260,7 +3260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5c4297ff24a48ed8fc14704acca3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStageNum: 5
+  enemyStageNum: 7
   m: {fileID: 2100000, guid: 205eac1d1390d4c249ad33b8bea4d564, type: 2}
   stageTypes: 
 --- !u!1 &619394800

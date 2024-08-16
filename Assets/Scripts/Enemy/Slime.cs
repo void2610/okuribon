@@ -11,8 +11,8 @@ public class Slime : EnemyBase
     protected override void Awake()
     {
         enemyName = "タマシイ";
-        health = 10;
-        maxHealth = 10;
+        hMax = 15;
+        hMin = 5;
         attack = 1;
         defense = 0;
         gold = 2;

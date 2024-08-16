@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
             playerActions.interactable = true;
             foreach (Transform child in playerActions.transform)
             {
-                child.GetComponent<TweenButton>().CheckMouseAndTween();
+                child.GetComponent<TweenButton>()?.CheckMouseAndTween();
             }
         }
         else
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
             playerActions.interactable = false;
             foreach (Transform child in playerActions.transform)
             {
-                child.GetComponent<TweenButton>().ResetScale();
+                child.GetComponent<TweenButton>()?.ResetScale();
             }
         }
     }

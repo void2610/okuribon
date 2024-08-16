@@ -16,8 +16,8 @@ public class Boss : EnemyBase
     protected override void Awake()
     {
         enemyName = "???";
-        health = 75;
-        maxHealth = 75;
+        hMax = 100;
+        hMin = 80;
         attack = 5;
         defense = 0;
         gold = 50;
