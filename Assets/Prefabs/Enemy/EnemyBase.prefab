@@ -412,6 +412,7 @@ MonoBehaviour:
   gold: 0
   exp: 0
   canvas: {fileID: 9209736915883113106}
+  damageTextPrefab: {fileID: 7173658914585924005, guid: 5b2e5a78c499b4e15b5f9834158131b8, type: 3}
 --- !u!1 &4401261538810572892
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +578,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290230199
+  m_fontColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

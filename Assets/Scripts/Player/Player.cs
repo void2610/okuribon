@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject canvas;
+    [SerializeField]
+    private GameObject damageTextPrefab;
 
     private TextMeshProUGUI healthText => canvas.transform.Find("HPText").GetComponent<TextMeshProUGUI>();
     private Slider healthSlider => canvas.transform.Find("HPSlider").GetComponent<Slider>();
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
+        ShowDamage(damage);
         health -= damage;
         if (health <= 0)
         {
@@ -104,6 +107,34 @@ public class Player : MonoBehaviour
     {
         exp += amount;
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
+    }
+
+    private void ShowDamage(int damage)
+    {
+        float r = UnityEngine.Random.Range(-0.5f, 0.5f);
+        var g = Instantiate(damageTextPrefab, this.transform.position + new Vector3(r, 0, 0), Quaternion.identity, this.canvas.transform);
+        g.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+
+        g.GetComponent<TextMeshProUGUI>().color = new Color(1, 0, 0);
+        g.GetComponent<TextMeshProUGUI>().DOColor(new Color(1, 1, 1), 0.5f);
+        g.transform.DOScale(3f, 0.1f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            g.transform.DOScale(1.75f, 0.1f).SetEase(Ease.Linear);
+        });
+
+        if (r > 0.0f)
+            g.transform.DOMoveX(-1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
+        else
+            g.transform.DOMoveX(1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
+
+        g.transform.DOMoveY(0.75f, 0.75f).SetRelative(true).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            g.GetComponent<TextMeshProUGUI>().DOFade(0, 0.5f);
+            g.transform.DOMoveY(-1f, 0.5f).SetRelative(true).SetEase(Ease.InQuad).OnComplete(() =>
+            {
+                Destroy(g);
+            });
+        });
     }
 
     private bool CheckAndLevelUp()

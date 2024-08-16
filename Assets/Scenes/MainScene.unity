@@ -9060,6 +9060,7 @@ MonoBehaviour:
   maxSave: 5
   save: 0
   canvas: {fileID: 937709306}
+  damageTextPrefab: {fileID: 7173658914585924005, guid: 5b2e5a78c499b4e15b5f9834158131b8, type: 3}
 --- !u!1 &1997731558
 GameObject:
   m_ObjectHideFlags: 0

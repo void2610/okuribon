@@ -27,6 +27,8 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField]
     private GameObject canvas;
+    [SerializeField]
+    private GameObject damageTextPrefab;
 
     protected int hMax = 100;
     protected int hMin = 1;
@@ -40,6 +42,7 @@ public class EnemyBase : MonoBehaviour
     private Image attackImage => canvas.transform.Find("AttackIcon").GetComponent<Image>();
     public void TakeDamage(int damage)
     {
+        ShowDamage(damage);
         health -= damage;
         if (health <= 1)
         {
@@ -51,6 +54,7 @@ public class EnemyBase : MonoBehaviour
 
     public void TakeDamageFromReturn(int damage)
     {
+        ShowDamage(damage);
         health -= damage;
         healthSlider.value = health;
         healthText.text = health + "/" + maxHealth;
@@ -131,6 +135,34 @@ public class EnemyBase : MonoBehaviour
     public void Death()
     {
         this.transform.parent.parent.GetComponent<EnemyContainer>().RemoveEnemy(this.gameObject);
+    }
+
+    private void ShowDamage(int damage)
+    {
+        float r = UnityEngine.Random.Range(-0.5f, 0.5f);
+        var g = Instantiate(damageTextPrefab, this.transform.position + new Vector3(r, 0, 0), Quaternion.identity, this.canvas.transform);
+        g.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+
+        g.GetComponent<TextMeshProUGUI>().color = new Color(1, 0, 0);
+        g.GetComponent<TextMeshProUGUI>().DOColor(new Color(1, 1, 1), 0.5f);
+        g.transform.DOScale(3f, 0.1f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            g.transform.DOScale(1.75f, 0.1f).SetEase(Ease.Linear);
+        });
+
+        if (r > 0.0f)
+            g.transform.DOMoveX(-1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
+        else
+            g.transform.DOMoveX(1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
+
+        g.transform.DOMoveY(0.75f, 0.75f).SetRelative(true).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            g.GetComponent<TextMeshProUGUI>().DOFade(0, 0.5f);
+            g.transform.DOMoveY(-1f, 0.5f).SetRelative(true).SetEase(Ease.InQuad).OnComplete(() =>
+            {
+                Destroy(g);
+            });
+        });
     }
 
     protected virtual void Awake()
