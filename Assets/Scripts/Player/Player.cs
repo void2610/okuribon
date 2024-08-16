@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
             Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
             UpdateStatusDisplay();
             GameManager.instance.playerAnimation.ChangeAnimation("stand");
-            Utils.instance.WaitAndInvoke(1.5f, () =>
+            Utils.instance.WaitAndInvoke(1f, () =>
             {
                 if (CheckAndLevelUp())
                 {
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
             save = 0;
             UpdateStatusDisplay();
             GameManager.instance.playerAnimation.ChangeAnimation("stand");
-            Utils.instance.WaitAndInvoke(1.5f, () =>
+            Utils.instance.WaitAndInvoke(1, () =>
             {
                 if (CheckAndLevelUp())
                 {

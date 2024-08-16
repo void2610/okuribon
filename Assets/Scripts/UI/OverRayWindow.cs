@@ -52,6 +52,7 @@ public class OverRayWindow : MonoBehaviour
         RectTransform rectTransform = bgImage.GetComponent<RectTransform>();
         rectTransform.sizeDelta = size;
         rectTransform.anchoredPosition = new Vector2(0, 0);
+        bgImage.raycastTarget = false;
 
         GameObject textObject = new GameObject("Text");
         textObject.transform.SetParent(window.transform);
@@ -65,6 +66,7 @@ public class OverRayWindow : MonoBehaviour
         RectTransform textRectTransform = t.GetComponent<RectTransform>();
         textRectTransform.sizeDelta = size;
         textRectTransform.anchoredPosition = new Vector2(0, 0);
+        t.raycastTarget = false;
 
         // マウスオーバー時にウィンドウを表示
         EventTrigger trigger = this.gameObject.AddComponent<EventTrigger>();
