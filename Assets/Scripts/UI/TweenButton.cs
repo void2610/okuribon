@@ -65,12 +65,9 @@ public class TweenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         raycaster.Raycast(pointerEventData, results);
 
         // UI要素にヒットしたか確認
-        foreach (RaycastResult result in results)
+        if (results[0].gameObject == this.gameObject || results[0].gameObject.transform.IsChildOf(this.transform))
         {
-            if (result.gameObject == this.gameObject)
-            {
-                this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
-            }
+            this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
         }
     }
 

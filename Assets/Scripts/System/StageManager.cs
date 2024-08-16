@@ -32,12 +32,17 @@ public class StageManager : MonoBehaviour
 
     public void NextStage()
     {
-        SeManager.instance.PlaySe("footsteps");
-        DOTween.To(() => m.GetTextureOffset("_MainTex"), x => m.SetTextureOffset("_MainTex", x), new Vector2(1, 0), 2.0f).SetEase(Ease.Linear).OnComplete(() =>
+        if (currentStage >= 0)
         {
-            m.SetTextureOffset("_MainTex", new Vector2(0, 0));
-        });
-        //背景をスクロールさせる
+            GameManager.instance.playerAnimation.ChangeAnimation("move");
+            SeManager.instance.PlaySe("footsteps");
+            //背景をスクロールさせる
+            DOTween.To(() => m.GetTextureOffset("_MainTex"), x => m.SetTextureOffset("_MainTex", x), new Vector2(1, 0), 2.0f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                m.SetTextureOffset("_MainTex", new Vector2(0, 0));
+            });
+        }
+
         Utils.instance.WaitAndInvoke(2.0f, () =>
         {
             currentStage++;

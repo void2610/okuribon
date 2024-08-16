@@ -142,7 +142,6 @@ public class GameManager : MonoBehaviour
                 uiManager.EnableLevelUpOptions(true);
                 break;
             case GameState.StageMoving:
-                playerAnimation.ChangeAnimation("move");
                 stageManager.NextStage();
                 break;
             case GameState.Shop:
