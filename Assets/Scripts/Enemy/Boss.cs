@@ -20,9 +20,8 @@ public class Boss : EnemyBase
         hMin = 80;
         attack = 5;
         defense = 0;
-        gold = 50;
+        gold = 0;
         exp = 0;
-
         enemyActions.Add(new AttackData
         {
             name = "かんつう\nこうげき",

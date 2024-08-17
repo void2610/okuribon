@@ -15,6 +15,8 @@ public class TitleMenu : MonoBehaviour
     private Slider seSlider;
     [SerializeField]
     private TMP_InputField seedInputField;
+    [SerializeField]
+    private CanvasGroup credit;
 
     public void StartGame()
     {
@@ -24,6 +26,22 @@ public class TitleMenu : MonoBehaviour
         {
             SceneManager.LoadScene("MainScene");
         });
+    }
+
+    public void ShowCredit()
+    {
+        PlayButtonSe();
+        credit.alpha = 1.0f;
+        credit.interactable = true;
+        credit.blocksRaycasts = true;
+    }
+
+    public void HideCredit()
+    {
+        PlayButtonSe();
+        credit.alpha = 0.0f;
+        credit.interactable = false;
+        credit.blocksRaycasts = false;
     }
 
     public void PlayButtonSe()
@@ -40,6 +58,7 @@ public class TitleMenu : MonoBehaviour
         PlayerPrefs.SetInt("Seed", 0);
         PlayerPrefs.SetString("SeedText", "");
     }
+
     public void ResetSetting()
     {
         PlayerPrefs.SetFloat("BgmVolume", 1.0f);
@@ -50,6 +69,7 @@ public class TitleMenu : MonoBehaviour
 
     void Awake()
     {
+        HideCredit();
         if (!PlayerPrefs.HasKey("BgmVolume")) InitPlayerPrefs();
     }
 

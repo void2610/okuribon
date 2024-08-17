@@ -16,7 +16,7 @@ public class Slime : EnemyBase
         attack = 1;
         defense = 0;
         gold = 2;
-        exp = 10;
+        exp = 15;
         enemyActions.Add(new AttackData
         {
             name = "すいとる",
