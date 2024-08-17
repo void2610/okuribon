@@ -29,6 +29,8 @@ public class EnemyBase : MonoBehaviour
     private GameObject canvas;
     [SerializeField]
     private GameObject damageTextPrefab;
+    [SerializeField]
+    private GameObject coinPrefab;
 
     protected int hMax = 100;
     protected int hMin = 1;
@@ -92,6 +94,13 @@ public class EnemyBase : MonoBehaviour
 
     public void OnDisappear()
     {
+        for (int i = 0; i < gold; i++)
+        {
+            Utils.instance.WaitAndInvoke(i * 0.1f, () =>
+            {
+                Instantiate(coinPrefab, this.transform.position, Quaternion.identity);
+            });
+        }
         CanvasGroup cg = canvas.GetComponent<CanvasGroup>();
         cg.DOFade(0, 0.5f);
         // ゆらゆらと左右に揺れながら上に登っていく

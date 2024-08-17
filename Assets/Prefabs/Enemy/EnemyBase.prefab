@@ -413,6 +413,7 @@ MonoBehaviour:
   exp: 0
   canvas: {fileID: 9209736915883113106}
   damageTextPrefab: {fileID: 7173658914585924005, guid: 5b2e5a78c499b4e15b5f9834158131b8, type: 3}
+  coinPrefab: {fileID: 1812483531616101450, guid: d151aea72a9114847aeec1744aa3f1db, type: 3}
 --- !u!1 &4401261538810572892
 GameObject:
   m_ObjectHideFlags: 0
