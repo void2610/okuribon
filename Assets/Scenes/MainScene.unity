@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -380, y: 212}
+  m_AnchoredPosition: {x: -380.4, y: 217}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107445117
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 999'
+  m_text: "\u30EC\u30D9\u30EB: 999"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -901,7 +901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -379, y: 252.9}
+  m_AnchoredPosition: {x: -374.4, y: 252}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234176055
@@ -924,7 +924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Coin: 10000'
+  m_text: "\u304A\u304B\u306D: 999"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -2309,7 +2309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -355, y: 139}
+  m_AnchoredPosition: {x: -352.4, y: 147}
   m_SizeDelta: {x: 250, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425703239
@@ -2332,7 +2332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack: 9999'
+  m_text: "\u3053\u3046\u3052\u304D\u308A\u3087\u304F: 9999"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -3296,6 +3296,7 @@ MonoBehaviour:
   playerAnimation: {fileID: 865019286}
   enemyContainer: {fileID: 198190389}
   shop: {fileID: 1489068727}
+  turnCount: 0
 --- !u!114 &567445624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4797,8 +4798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -355, y: 171.2}
-  m_SizeDelta: {x: 250, y: 30}
+  m_AnchoredPosition: {x: -324.4, y: 182}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &869277087
 MonoBehaviour:
@@ -4820,7 +4821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'EXP: 1000/1000'
+  m_text: "\u3051\u3044\u3051\u3093\u3061: 1000/1000"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
   m_sharedMaterial: {fileID: 7249865222885206125, guid: 4cc76bd7b72104473820ac76eda6a50e, type: 2}
@@ -7164,7 +7165,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285284300}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

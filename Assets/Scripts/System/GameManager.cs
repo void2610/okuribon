@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using unityroom.Api;
 
 
 public class GameManager : MonoBehaviour
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     public System.Random random { get; private set; }
     private int seed = 42;
     private bool isPaused = false;
+    public int turnCount = 0;
     public Player player => playerObj.GetComponent<Player>();
     public UIManager uiManager => GetComponent<UIManager>();
     public StageManager stageManager => GetComponent<StageManager>();
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.PlayerTurn:
+                turnCount++;
                 uiManager.EnablePlayerActions(true);
                 player.EnableSave(false);
                 playerAnimation.ChangeAnimation("stand");
@@ -155,6 +158,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Clear:
                 playerAnimation.ChangeAnimation("stand");
+                UnityroomApiClient.Instance.SendScore(1, turnCount, ScoreboardWriteMode.HighScoreAsc);
                 uiManager.EnableClear(true);
                 break;
             case GameState.Other:

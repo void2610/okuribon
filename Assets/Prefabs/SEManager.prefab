@@ -61,3 +61,6 @@ MonoBehaviour:
   - name: coin
     audioClip: {fileID: 8300000, guid: d9e708257b4ef49e7b16ecbc4cd83d6b, type: 3}
     volume: 1
+  - name: error
+    audioClip: {fileID: 8300000, guid: 34b338ab01aa64bc5bcc333030090dc8, type: 3}
+    volume: 1

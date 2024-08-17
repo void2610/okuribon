@@ -155,6 +155,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt("Tutorial", 1);
             tutorial.alpha = 0;
             tutorial.interactable = false;
             tutorial.blocksRaycasts = false;
@@ -288,11 +289,7 @@ public class UIManager : MonoBehaviour
     public void OnClickNext()
     {
         SeManager.instance.PlaySe("button");
-        fadeImage.DOFade(1f, 1f).OnComplete(() =>
-        {
-            EnableStory(false);
-            fadeImage.DOFade(0, 1f);
-        });
+        EnableStory(false);
     }
 
     void Awake()
@@ -307,8 +304,16 @@ public class UIManager : MonoBehaviour
         EnableGameOver(false);
         EnableClear(false);
 
-        EnableTutorial(true);
-        EnableStory(true);
+        if (PlayerPrefs.GetInt("Tutorial", 0) == 0)
+        {
+            EnableTutorial(true);
+            EnableStory(true);
+        }
+        else
+        {
+            EnableTutorial(false);
+            EnableStory(false);
+        }
     }
 
     private void Start()
@@ -335,10 +340,5 @@ public class UIManager : MonoBehaviour
 
         fadeImage.color = new Color(0, 0, 0, 1);
         fadeImage.DOFade(0, 2f);
-    }
-
-    void Update()
-    {
-
     }
 }

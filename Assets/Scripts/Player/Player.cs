@@ -76,19 +76,34 @@ public class Player : MonoBehaviour
     public void AddSaveFromItem(int amount)
     {
         save += amount;
-        if (save > maxSave)
+        if (save > maxSave + 5)
         {
-            save = maxSave;
+            save = maxSave + 5;
         }
         UpdateStatusDisplay();
     }
 
     public void Heal(int amount)
     {
+        if (health >= maxHealth)
+        {
+            return;
+        }
+
         health += amount;
         if (health > maxHealth)
         {
             health = maxHealth;
+        }
+        UpdateStatusDisplay();
+    }
+
+    public void HealFromItem(int amount)
+    {
+        health += amount;
+        if (health > maxHealth + 5)
+        {
+            health = maxHealth + 5;
         }
         UpdateStatusDisplay();
     }
@@ -172,6 +187,7 @@ public class Player : MonoBehaviour
             foreach (EnemyBase enemy in enemies)
             {
                 enemy.TakeDamage(a);
+                Heal(1);
             }
             Camera.main.GetComponent<CameraMove>().ShakeCamera(0.5f, 0.3f);
             UpdateStatusDisplay();
