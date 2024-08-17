@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         if (target == null) return;
+        SeManager.instance.PlaySe("coin");
 
         float r = UnityEngine.Random.Range(-0.1f, 0.1f);
         this.transform.position += new Vector3(r, 1, 0);
