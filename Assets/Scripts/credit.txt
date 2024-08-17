@@ -1,10 +1,21 @@
-SE, ボタン素材
+プログラム/原案
+void2610
+
+イラスト/ストーリー
+なり
+
+
+
+SE/ボタン素材
+Kenney
 https://www.kenney.nl/assets
 
 SE
+効果音ラボ
 https://soundeffect-lab.info
 
 BGM
+seadenden 8bit free BGM
 https://seadenden-8bit.com
 
 フォント
