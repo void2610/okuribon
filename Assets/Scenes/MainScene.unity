@@ -4597,7 +4597,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5580020393259178019, guid: 0158845b5b9f7e74bac5b61d594a1faa, type: 3}
+  m_Sprite: {fileID: -3462419110485495355, guid: 6f44fb0a96296e946923e5937731e5ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4618,7 +4618,7 @@ Animator:
   m_GameObject: {fileID: 865019282}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f7e1a710539edb46812b913cdd6944c, type: 2}
+  m_Controller: {fileID: 9100000, guid: fcca8481de2c1854886a92391fe3e62f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4642,10 +4642,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f410ea55fb71482482eaa676823232e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stand: {fileID: 9100000, guid: 5f7e1a710539edb46812b913cdd6944c, type: 2}
-  sword: {fileID: 9100000, guid: 537116ccfc5175c4dae6ced24c5eaf1c, type: 2}
-  gun: {fileID: 9100000, guid: b992803cc13844c49b47fd3f8561f575, type: 2}
-  move: {fileID: 9100000, guid: dc34a7eefecdea942a6ce6c1a9d24f86, type: 2}
+  stand: {fileID: 9100000, guid: fcca8481de2c1854886a92391fe3e62f, type: 2}
+  sword: {fileID: 9100000, guid: b3fedda3bd73765459b4402c469a092e, type: 2}
+  gun: {fileID: 9100000, guid: 98467c0fb8e23fe46b78d28a8e590976, type: 2}
+  move: {fileID: 9100000, guid: 2cee95425429d7741bb044b8351e38da, type: 2}
 --- !u!1 &869277085
 GameObject:
   m_ObjectHideFlags: 0
