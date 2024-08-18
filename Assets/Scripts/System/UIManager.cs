@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup playerActions;
     [SerializeField]
-    private CanvasGroup levlUpOptions;
+    private CanvasGroup levelUpOptions;
     [SerializeField]
     private CanvasGroup shopOptions;
     [SerializeField]
@@ -74,15 +74,15 @@ public class UIManager : MonoBehaviour
     {
         if (e)
         {
-            levlUpOptions.alpha = 1;
-            levlUpOptions.interactable = true;
-            levlUpOptions.blocksRaycasts = true;
+            levelUpOptions.alpha = 1;
+            levelUpOptions.interactable = true;
+            levelUpOptions.blocksRaycasts = true;
         }
         else
         {
-            levlUpOptions.alpha = 0;
-            levlUpOptions.interactable = false;
-            levlUpOptions.blocksRaycasts = false;
+            levelUpOptions.alpha = 0;
+            levelUpOptions.interactable = false;
+            levelUpOptions.blocksRaycasts = false;
         }
     }
 
@@ -372,19 +372,20 @@ public class UIManager : MonoBehaviour
     }
 
     private void Update(){
-        if(!playerActions.interactable) return;
-
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            OnClickAttack();
+            if(playerActions.interactable) OnClickAttack();
+            else if(levelUpOptions.interactable) OnClickGrowAttack();
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            OnClickSave();
+            if(playerActions.interactable) OnClickSave();
+            else if(levelUpOptions.interactable) OnClickGrowSave();
         }
         else if (Input.GetKeyDown(KeyCode.C))
         {
-            OnClickReturn();
+            if(playerActions.interactable) OnClickReturn();
+            else if(levelUpOptions.interactable) OnClickGrowHp();
         }
     }
 }

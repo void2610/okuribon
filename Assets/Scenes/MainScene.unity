@@ -3182,7 +3182,7 @@ MonoBehaviour:
   seSlider: {fileID: 9088715935136075098}
   fadeImage: {fileID: 1749989334}
   playerActions: {fileID: 2097813311}
-  levlUpOptions: {fileID: 682198223}
+  levelUpOptions: {fileID: 682198223}
   shopOptions: {fileID: 230864365}
   pauseMenu: {fileID: 403790023}
   gameOver: {fileID: 1477400322}
