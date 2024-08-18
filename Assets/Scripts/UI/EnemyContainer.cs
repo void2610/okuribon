@@ -163,5 +163,10 @@ public class EnemyContainer : MonoBehaviour
         {
             SpawnEnemy();
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            //PlayerPrefsをリセット
+            PlayerPrefs.DeleteAll();
+        }
     }
 }

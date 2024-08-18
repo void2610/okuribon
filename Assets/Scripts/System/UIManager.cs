@@ -175,6 +175,7 @@ public class UIManager : MonoBehaviour
             story.alpha = 0;
             story.interactable = false;
             story.blocksRaycasts = false;
+            EnableTutorial(true);
         }
     }
 
@@ -265,6 +266,12 @@ public class UIManager : MonoBehaviour
         EnableTutorial(true);
     }
 
+    public void OnClickStory()
+    {
+        SeManager.instance.PlaySe("button");
+        EnableStory(true);
+    }
+
     public void OnClickResume()
     {
         SeManager.instance.PlaySe("button");
@@ -306,18 +313,19 @@ public class UIManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Tutorial", 0) == 0)
         {
-            EnableTutorial(true);
+            EnableTutorial(false);
             EnableStory(true);
         }
         else
         {
-            EnableTutorial(false);
             EnableStory(false);
+            EnableTutorial(false);
         }
     }
 
     private void Start()
     {
+
         bgmSlider.onValueChanged.AddListener((value) =>
         {
             BgmManager.instance.BgmVolume = value;
