@@ -155,18 +155,18 @@ public class EnemyContainer : MonoBehaviour
         positions.Add(this.transform.position);
         positions.Add(this.transform.position + new Vector3(alignment, 0, 0));
     }
-    void Update()
-    {
-        // エディタだけ
-        if (!Application.isEditor) return;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnEnemy();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            //PlayerPrefsをリセット
-            PlayerPrefs.DeleteAll();
-        }
-    }
+    // void Update()
+    // {
+    //     // エディタだけ
+    //     if (!Application.isEditor) return;
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         SpawnEnemy();
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.B))
+    //     {
+    //         //PlayerPrefsをリセット
+    //         PlayerPrefs.DeleteAll();
+    //     }
+    // }
 }

@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
         GameManager.instance.ChangeState(GameManager.GameState.PlayerAttack);
         GameManager.instance.playerAnimation.ChangeAnimation("sword");
 
-        Utils.instance.WaitAndInvoke(1f, () =>
+        Utils.instance.WaitAndInvoke(0.75f, () =>
         {
             SeManager.instance.PlaySe("enemyAttack");
             int a = Mathf.FloorToInt((float)attack);
@@ -295,13 +295,5 @@ public class Player : MonoBehaviour
         GameManager.instance.uiManager.UpdateExpText(exp, levelUpExp[level - 1]);
         GameManager.instance.uiManager.UpdateLevelText(level);
         GameManager.instance.uiManager.UpdateAttackText(attack);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            AddGold(100);
-        }
     }
 }

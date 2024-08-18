@@ -3194,6 +3194,8 @@ MonoBehaviour:
   levelText: {fileID: 107445117}
   attackText: {fileID: 425703239}
   stageText: {fileID: 509686115}
+  attackButton: {fileID: 119197011}
+  saveButton: {fileID: 1660364057}
   returnButton: {fileID: 67255169}
   remainingLevelUps: 0
 --- !u!114 &567445625

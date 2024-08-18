@@ -41,6 +41,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI stageText;
     [SerializeField]
+    private Button attackButton;
+    [SerializeField]
+    private Button saveButton;
+    [SerializeField]
     private Button returnButton;
 
     public int remainingLevelUps = 0;
@@ -210,7 +214,7 @@ public class UIManager : MonoBehaviour
     {
         SeManager.instance.PlaySe("button");
         GameManager.instance.uiManager.EnablePlayerActions(false);
-        Utils.instance.WaitAndInvoke(0.5f, () => player.Attack(GameManager.instance.enemyContainer.GetAllEnemies()));
+        player.Attack(GameManager.instance.enemyContainer.GetAllEnemies());
     }
     public void OnClickSave()
     {
@@ -365,5 +369,22 @@ public class UIManager : MonoBehaviour
 
         fadeImage.color = new Color(0, 0, 0, 1);
         fadeImage.DOFade(0, 2f);
+    }
+
+    private void Update(){
+        if(!playerActions.interactable) return;
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            OnClickAttack();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            OnClickSave();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            OnClickReturn();
+        }
     }
 }
