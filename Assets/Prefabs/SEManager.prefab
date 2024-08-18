@@ -64,3 +64,9 @@ MonoBehaviour:
   - name: error
     audioClip: {fileID: 8300000, guid: 34b338ab01aa64bc5bcc333030090dc8, type: 3}
     volume: 1
+  - name: mirror
+    audioClip: {fileID: 8300000, guid: f9880c88442754da5bc4efcb8150dc95, type: 3}
+    volume: 1
+  - name: laser
+    audioClip: {fileID: 8300000, guid: 902b69590f2d54f91a77e51ee9f69292, type: 3}
+    volume: 1
