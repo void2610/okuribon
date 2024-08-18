@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        GameManager.instance.playerAnimation.ChangeAnimation("sword");
+        GameManager.instance.playerAnimation.ChangeAnimation("gun");
 
         Utils.instance.WaitAndInvoke(1f, () =>
         {
