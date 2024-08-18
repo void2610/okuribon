@@ -229,6 +229,7 @@ public class Player : MonoBehaviour
 
         Utils.instance.WaitAndInvoke(1f, () =>
         {
+            mirror.LaserOn();
             SeManager.instance.PlaySe("enemyAttack");
             int a = Mathf.FloorToInt(attack * (float)save);
             foreach (EnemyBase enemy in enemies)

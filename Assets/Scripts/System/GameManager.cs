@@ -159,7 +159,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Clear:
                 playerAnimation.ChangeAnimation("stand");
-                UnityroomApiClient.Instance.SendScore(1, turnCount, ScoreboardWriteMode.HighScoreAsc);
+                if(PlayerPrefs.GetString("SeedText", "") == "")
+                    UnityroomApiClient.Instance.SendScore(1, turnCount, ScoreboardWriteMode.HighScoreAsc);
                 uiManager.EnableClear(true);
                 break;
             case GameState.Other:

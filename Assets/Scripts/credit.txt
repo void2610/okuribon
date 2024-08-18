@@ -2,7 +2,7 @@
 void2610
 
 イラスト/ストーリー
-なり
+あんり
 
 
 
@@ -13,6 +13,9 @@ https://www.kenney.nl/assets
 SE
 効果音ラボ
 https://soundeffect-lab.info
+
+レーザービーム音
+https://commons.nicovideo.jp/works/nc148568
 
 BGM
 seadenden 8bit free BGM
