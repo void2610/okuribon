@@ -28,7 +28,7 @@ public class Boss : EnemyBase
             action = PiercingAttack,
             probability = 0.5f,
             color = Color.yellow,
-            description = "ためることができない",
+            description = "ためることができない\n" + (attack / 2) + "ダメージ",
         });
         enemyActions.Add(new AttackData
         {

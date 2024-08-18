@@ -1,26 +1,26 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class Slime : EnemyBase
+public class NormalSoul : EnemyBase
 {
-    private void SlimeAttack(Player player)
+    private void Absorb(Player player)
     {
         player.AddSaveFromEnemy(-attack);
     }
 
     protected override void Awake()
     {
-        enemyName = "タマシイ";
+        enemyName = "あおい\nタマシイ";
         hMax = 15;
         hMin = 5;
         attack = 1;
         defense = 0;
-        gold = 2;
+        gold = 1;
         exp = 15;
         enemyActions.Add(new AttackData
         {
             name = "すいとる",
-            action = SlimeAttack,
+            action = Absorb,
             probability = 0.2f,
             color = Color.blue,
             description = "ためた値を1へらす",
