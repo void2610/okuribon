@@ -42,6 +42,15 @@ public class Player : MonoBehaviour
 
         var emission = saveEffect.emission;
         emission.rateOverTime = ((float)save / (float)maxSave) * 15;
+
+        if(save > 0)
+        {
+            GameManager.instance.uiManager.EnableReturnButton(true);
+        }
+        else
+        {
+            GameManager.instance.uiManager.EnableReturnButton(false);
+        }
     }
 
     public void TakeDamage(int damage)

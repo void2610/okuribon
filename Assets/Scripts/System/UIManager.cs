@@ -40,7 +40,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI attackText;
     [SerializeField]
     private TextMeshProUGUI stageText;
-
+    [SerializeField]
+    private Button returnButton;
 
     public int remainingLevelUps = 0;
     private Player player => GameManager.instance.player;
@@ -301,6 +302,20 @@ public class UIManager : MonoBehaviour
         EnableStory(false);
     }
 
+    public void EnableReturnButton(bool e)
+    {
+        if(e)
+        {
+            returnButton.interactable = true;
+            returnButton.GetComponent<TweenButton>()?.CheckMouseAndTween();
+        }
+        else
+        {
+            returnButton.interactable = false;
+            returnButton.GetComponent<TweenButton>()?.ResetScale();
+        }
+    }
+
     void Awake()
     {
         bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
@@ -327,7 +342,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
         bgmSlider.onValueChanged.AddListener((value) =>
         {
             BgmManager.instance.BgmVolume = value;
