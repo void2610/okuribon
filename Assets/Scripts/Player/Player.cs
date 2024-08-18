@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private TextMeshProUGUI saveText => canvas.transform.Find("SaveText").GetComponent<TextMeshProUGUI>();
     private Slider saveSlider => canvas.transform.Find("SaveSlider").GetComponent<Slider>();
     private ParticleSystem saveEffect => this.transform.parent.transform.Find("SaveParticle").GetComponent<ParticleSystem>();
+    public Mirror mirror => this.transform.parent.transform.Find("Mirror").GetComponent<Mirror>();
 
     public void UpdateStatusDisplay()
     {

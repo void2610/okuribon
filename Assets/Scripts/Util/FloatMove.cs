@@ -12,7 +12,7 @@ public class FloatMove : MonoBehaviour
 
     private void StartMove()
     {
-        transform.DOLocalMoveY(moveDistance, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        transform.DOLocalMoveY(moveDistance, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetRelative(true);
     }
     private void Awake()
     {

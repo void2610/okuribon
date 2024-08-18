@@ -215,12 +215,14 @@ public class UIManager : MonoBehaviour
     {
         SeManager.instance.PlaySe("button");
         GameManager.instance.uiManager.EnablePlayerActions(false);
+        GameManager.instance.player.mirror.AttackPos();
         Utils.instance.WaitAndInvoke(0.5f, () => player.EnableSave(true));
     }
     public void OnClickReturn()
     {
         SeManager.instance.PlaySe("button");
         GameManager.instance.uiManager.EnablePlayerActions(false);
+        GameManager.instance.player.mirror.AttackPos();
         Utils.instance.WaitAndInvoke(0.5f, () => player.Return(GameManager.instance.enemyContainer.GetAllEnemies()));
     }
 

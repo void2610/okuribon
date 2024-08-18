@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerAttack:
                 break;
             case GameState.EnemyAttack:
+                player.mirror.NormalPos();
                 break;
             case GameState.LevelUp:
                 uiManager.EnableLevelUpOptions(false);
