@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.PlayerTurn:
                 turnCount++;
+                uiManager.UpdateTurnText(turnCount);
                 uiManager.EnablePlayerActions(true);
                 player.EnableSave(false);
                 playerAnimation.ChangeAnimation("stand");

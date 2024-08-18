@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI expText;
     [SerializeField]
+    private TextMeshProUGUI turnText;
+    [SerializeField]
     private TextMeshProUGUI levelText;
     [SerializeField]
     private TextMeshProUGUI attackText;
@@ -197,6 +199,11 @@ public class UIManager : MonoBehaviour
     public void UpdateLevelText(int level)
     {
         levelText.text = "レベル: " + level;
+    }
+
+    public void UpdateTurnText(int turn)
+    {
+        turnText.text = "Turn: " + turn;
     }
 
     public void UpdateAttackText(float attack)
