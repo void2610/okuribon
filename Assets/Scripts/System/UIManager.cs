@@ -307,12 +307,13 @@ public class UIManager : MonoBehaviour
         if(e)
         {
             returnButton.interactable = true;
-            returnButton.GetComponent<TweenButton>()?.CheckMouseAndTween();
+            returnButton.GetComponent<UIGradient>().enabled = true;
         }
         else
         {
             returnButton.interactable = false;
             returnButton.GetComponent<TweenButton>()?.ResetScale();
+            returnButton.GetComponent<UIGradient>().enabled = false;
         }
     }
 

@@ -34,7 +34,7 @@ public class TweenButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (tweenByPointer && canvasGroup.interactable)
+        if (tweenByPointer && canvasGroup.interactable && this.GetComponent<Button>()?.interactable == true)
             this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
     }
 
