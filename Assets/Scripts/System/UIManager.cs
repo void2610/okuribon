@@ -203,7 +203,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTurnText(int turn)
     {
-        turnText.text = "Turn: " + turn;
+        turnText.text = "ターン: " + turn;
     }
 
     public void UpdateAttackText(float attack)
