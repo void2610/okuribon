@@ -3,24 +3,9 @@ using DG.Tweening;
 
 public class AttackSoul : EnemyBase
 {
-    private int turnCount = 0;
     private bool Wait(Player player)
     {
         return false;
-    }
-
-    protected override void DecideNextAction(){
-        if (turnCount == 0)
-        {
-            nextAction = enemyActions.Find(a => a.name == "まつ");
-        }
-        else
-        {
-            base.DecideNextAction();
-        }
-        turnCount++;
-
-        UpadateActionIcon();
     }
 
     protected override void Awake()
