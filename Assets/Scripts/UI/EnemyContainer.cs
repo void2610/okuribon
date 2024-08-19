@@ -125,15 +125,15 @@ public class EnemyContainer : MonoBehaviour
         for (int i = 0; i < currentEnemies.Count; i++)
         {
             GameObject enemy = currentEnemies[i];
-            // 敵を左側に移動させてゆっくり戻す
-            enemy.transform.GetChild(0).transform.DOMoveX(-0.75f, 0.02f).SetRelative(true).OnComplete(() =>
-            {
-                enemy.transform.GetChild(0).transform.DOMoveX(0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
-            });
-            SeManager.instance.PlaySe("enemyAttack");
             EnemyBase enemyBase = enemy.transform.GetChild(0).GetComponent<EnemyBase>();
-            enemyBase.Attack(player);
 
+            if(enemyBase.Attack(player)){
+                enemy.transform.GetChild(0).transform.DOMoveX(-0.75f, 0.02f).SetRelative(true).OnComplete(() =>
+                {
+                    enemy.transform.GetChild(0).transform.DOMoveX(0.75f, 0.2f).SetRelative(true).SetEase(Ease.OutExpo);
+                });
+                SeManager.instance.PlaySe("enemyAttack");
+            }
             // 0.5秒待つ
             yield return new WaitForSeconds(0.5f);
         }

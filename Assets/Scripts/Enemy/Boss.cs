@@ -3,14 +3,16 @@ using DG.Tweening;
 
 public class Boss : EnemyBase
 {
-    private void CallSoul(Player player)
+    private bool CallSoul(Player player)
     {
         GameManager.instance.enemyContainer.SpawnEnemyByBoss(1);
+        return false;
     }
 
-    protected virtual void PiercingAttack(Player player)
+    protected virtual bool PiercingAttack(Player player)
     {
         player.TakeDamage(attack / 2);
+        return true;
     }
 
     protected override void Awake()

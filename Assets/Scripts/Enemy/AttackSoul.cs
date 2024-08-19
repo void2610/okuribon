@@ -3,27 +3,42 @@ using DG.Tweening;
 
 public class AttackSoul : EnemyBase
 {
-    private void SlimeAttack(Player player)
+    private int turnCount = 0;
+    private bool Wait(Player player)
     {
-        player.AddSaveFromEnemy(-attack);
+        return false;
+    }
+
+    protected override void DecideNextAction(){
+        if (turnCount == 0)
+        {
+            nextAction = enemyActions.Find(a => a.name == "まつ");
+        }
+        else
+        {
+            base.DecideNextAction();
+        }
+        turnCount++;
+
+        UpadateActionIcon();
     }
 
     protected override void Awake()
     {
         enemyName = "あかい\nタマシイ";
-        hMax = 8;
-        hMin = 5;
+        hMax = 6;
+        hMin = 4;
         attack = 3;
         defense = 0;
         gold = 3;
         exp = 20;
         enemyActions.Add(new AttackData
         {
-            name = "すいとる",
-            action = SlimeAttack,
-            probability = 0.2f,
-            color = Color.blue,
-            description = "ためた値を1へらす",
+            name = "まつ",
+            action = Wait,
+            probability = 0.3f,
+            color = Color.black,
+            description = "何もしない",
         });
 
         base.Awake();

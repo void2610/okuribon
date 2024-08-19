@@ -12,7 +12,7 @@ public class EnemyBase : MonoBehaviour
     public class AttackData
     {
         public string name;
-        public Action<Player> action;
+        public Func<Player, bool> action;
         public float probability;
         public Color color = Color.white;
         public string description;
@@ -34,14 +34,16 @@ public class EnemyBase : MonoBehaviour
 
     protected int hMax = 100;
     protected int hMin = 1;
+    protected int turnCount = 0;
     protected List<AttackData> enemyActions = new List<AttackData>();
-    private AttackData nextAction;
+    protected AttackData nextAction;
 
     private TextMeshProUGUI nameText => canvas.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
     private TextMeshProUGUI healthText => canvas.transform.Find("HPText").GetComponent<TextMeshProUGUI>();
     private Slider healthSlider => canvas.transform.Find("HPSlider").GetComponent<Slider>();
     private TextMeshProUGUI attackText => canvas.transform.Find("AttackText").GetComponent<TextMeshProUGUI>();
     private Image attackImage => canvas.transform.Find("AttackIcon").GetComponent<Image>();
+
     public void TakeDamage(int damage)
     {
         ShowDamage(damage);
@@ -79,10 +81,12 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    public void Attack(Player player)
+    // 返り値で、攻撃モーションを再生するかどうかを返す
+    public bool Attack(Player player)
     {
-        nextAction.action(player);
+        bool b = nextAction.action(player);
         DecideNextAction();
+        return b;
     }
 
     public void OnAppear()
@@ -112,7 +116,7 @@ public class EnemyBase : MonoBehaviour
         });
     }
 
-    private void DecideNextAction()
+    protected virtual void DecideNextAction()
     {
         float sum = 0;
         foreach (var a in enemyActions)
@@ -130,15 +134,21 @@ public class EnemyBase : MonoBehaviour
             }
         }
 
+        UpadateActionIcon();
+    }
+
+    protected void UpadateActionIcon()
+    {
         attackText.text = nextAction.name;
         attackImage.color = nextAction.color;
         attackImage.GetComponent<OverRayWindow>().text = nextAction.description;
     }
 
-    protected virtual void NormalAttack(Player player)
+    protected virtual bool NormalAttack(Player player)
     {
         if (player.isSaving) player.AddSaveFromEnemy(attack);
         else player.TakeDamage(attack);
+        return true;
     }
 
     public void Death()
@@ -190,9 +200,5 @@ public class EnemyBase : MonoBehaviour
 
         DecideNextAction();
         OnAppear();
-    }
-
-    protected virtual void Update()
-    {
     }
 }

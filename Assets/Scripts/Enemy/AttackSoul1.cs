@@ -3,9 +3,10 @@ using DG.Tweening;
 
 public class AttackSoul1 : EnemyBase
 {
-    private void SlimeAttack(Player player)
+    private bool SlimeAttack(Player player)
     {
         player.AddSaveFromEnemy(-attack);
+        return true;
     }
 
     protected override void Awake()

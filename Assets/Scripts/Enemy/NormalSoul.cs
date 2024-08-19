@@ -3,9 +3,10 @@ using DG.Tweening;
 
 public class NormalSoul : EnemyBase
 {
-    private void Absorb(Player player)
+    private bool Absorb(Player player)
     {
         player.AddSaveFromEnemy(-attack);
+        return true;
     }
 
     protected override void Awake()

@@ -834,6 +834,8 @@ MonoBehaviour:
   enemies:
   - prefab: {fileID: 7123930927352974661, guid: 26ab72f4ec00046669939f6b0e5575b1, type: 3}
     probability: 1
+  - prefab: {fileID: 7123930927352974661, guid: e2fd3bae08a674a6090c4fcfef6dc087, type: 3}
+    probability: 0.7
   bosses:
   - prefab: {fileID: 3949692989573810466, guid: c874cebddeaf64e2d8cc181edcdf9d50, type: 3}
     probability: 1
