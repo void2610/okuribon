@@ -18,6 +18,9 @@ public class Shop : MonoBehaviour
     private Image shopBG;
 
     [SerializeField]
+    private List<GameObject> shopOptions = new List<GameObject>();
+
+    [SerializeField]
     private List<ItemData> items = new List<ItemData>();
 
     private List<GameObject> currentItems = new List<GameObject>();
@@ -43,9 +46,10 @@ public class Shop : MonoBehaviour
             {
                 if (randomPoint < itemData.probability)
                 {
-                    var g = Instantiate(itemData.prefab, this.transform);
+                    var g = Instantiate(itemData.prefab, shopOptions[i].transform);
+                    g.transform.localScale = Vector3.one;
                     currentItems.Add(g);
-                    g.GetComponent<RectTransform>().position = positions[i];
+                    // g.GetComponent<RectTransform>().position = positions[i];
                     // g.transform.localPosition = positions[i];
                     SetOnClick(g);
                     g.transform.GetChild(0).GetComponent<CanvasGroup>().DOFade(1, 0.5f);
@@ -118,9 +122,10 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
+        float a = 190;
         float offset = this.transform.parent.transform.position.x;
-        positions.Add(this.transform.position + new Vector3(-160, 0, 0));
+        positions.Add(this.transform.position + new Vector3(-a, 0, 0));
         positions.Add(this.transform.position);
-        positions.Add(this.transform.position + new Vector3(160, 0, 0));
+        positions.Add(this.transform.position + new Vector3(a, 0, 0));
     }
 }
