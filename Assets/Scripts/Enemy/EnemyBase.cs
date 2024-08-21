@@ -162,25 +162,20 @@ public class EnemyBase : MonoBehaviour
         var g = Instantiate(damageTextPrefab, this.transform.position + new Vector3(r, 0, 0), Quaternion.identity, this.canvas.transform);
         g.GetComponent<TextMeshProUGUI>().text = damage.ToString();
 
-        g.GetComponent<TextMeshProUGUI>().color = new Color(1, 0, 0);
-        g.GetComponent<TextMeshProUGUI>().DOColor(new Color(1, 1, 1), 0.5f);
+        g.GetComponent<TextMeshProUGUI>().color = Color.red;
+        g.GetComponent<TextMeshProUGUI>().DOColor(Color.white, 0.5f);
+
         g.transform.DOScale(3f, 0.1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             g.transform.DOScale(1.75f, 0.1f).SetEase(Ease.Linear);
         });
 
-        if (r > 0.0f)
-            g.transform.DOMoveX(-1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
-        else
-            g.transform.DOMoveX(1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
+        g.transform.DOMoveX(r > 0.0f ? -1.5f : 1.5f, 2f).SetRelative(true).SetEase(Ease.Linear);
 
         g.transform.DOMoveY(0.75f, 0.75f).SetRelative(true).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             g.GetComponent<TextMeshProUGUI>().DOFade(0, 0.5f);
-            g.transform.DOMoveY(-1f, 0.5f).SetRelative(true).SetEase(Ease.InQuad).OnComplete(() =>
-            {
-                Destroy(g);
-            });
+            g.transform.DOMoveY(-1f, 0.5f).SetRelative(true).SetEase(Ease.InQuad).OnComplete(() => Destroy(g));
         });
     }
 
