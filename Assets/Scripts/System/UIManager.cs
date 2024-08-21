@@ -241,6 +241,7 @@ public class UIManager : MonoBehaviour
     public void OnClickShopExit()
     {
         SeManager.instance.PlaySe("button");
+        shopOptions.DOFade(0, 0.5f);
         GameManager.instance.ChangeState(GameManager.GameState.StageMoving);
     }
 
