@@ -78,28 +78,28 @@ public class StageManager : MonoBehaviour
 
     private void DecideStage()
     {
-        // int shopNum = enemyStageNum / 2;
-        // stageTypes.Clear();
-        // for (int i = 0; i < enemyStageNum + shopNum; i++) stageTypes.Add(StageType.other);
+        int shopNum = enemyStageNum / 2;
+        stageTypes.Clear();
+        for (int i = 0; i < enemyStageNum + shopNum; i++) stageTypes.Add(StageType.other);
 
-        // for (int i = 0; i < shopNum; i++)
-        // {
-        //     int index = GameManager.instance.RandomRange(1, stageTypes.Count);
-        //     if (stageTypes[index] == StageType.shop)
-        //     {
-        //         i--;
-        //         continue;
-        //     }
-        //     stageTypes[index] = StageType.shop;
-        // }
+        for (int i = 0; i < shopNum; i++)
+        {
+            int index = GameManager.instance.RandomRange(1, stageTypes.Count);
+            if (stageTypes[index] == StageType.shop)
+            {
+                i--;
+                continue;
+            }
+            stageTypes[index] = StageType.shop;
+        }
 
-        // for (int i = 0; i < stageTypes.Count; i++)
-        // {
-        //     if (stageTypes[i] == StageType.other)
-        //     {
-        //         stageTypes[i] = StageType.enemy;
-        //     }
-        // }
+        for (int i = 0; i < stageTypes.Count; i++)
+        {
+            if (stageTypes[i] == StageType.other)
+            {
+                stageTypes[i] = StageType.enemy;
+            }
+        }
         stageTypes.Add(StageType.boss);
     }
 

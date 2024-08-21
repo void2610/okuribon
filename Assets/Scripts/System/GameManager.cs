@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Shop:
                 shop.ResetItem();
-                uiManager.EnableShopOptions(false);
                 break;
             case GameState.GameOver:
                 break;

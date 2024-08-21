@@ -3724,7 +3724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7523,6 +7523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8a2bcae7f1a473394bbc43a3e44294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopBG: {fileID: 718956689}
   items:
   - prefab: {fileID: 940816398273751975, guid: f91da1200c1954ff4a08a426b66db118, type: 3}
     probability: 1
