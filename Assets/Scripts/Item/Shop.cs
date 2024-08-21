@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Shop : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class Shop : MonoBehaviour
         public GameObject prefab;
         public float probability;
     }
+
+    [SerializeField]
+    private Image shopBG;
 
     [SerializeField]
     private List<ItemData> items = new List<ItemData>();
@@ -40,22 +45,28 @@ public class Shop : MonoBehaviour
                 {
                     var g = Instantiate(itemData.prefab, this.transform);
                     currentItems.Add(g);
-                    g.transform.position = positions[i];
+                    g.GetComponent<RectTransform>().position = positions[i];
+                    // g.transform.localPosition = positions[i];
                     SetOnClick(g);
+                    g.transform.GetChild(0).GetComponent<CanvasGroup>().DOFade(1, 0.5f);
                     break;
                 }
                 randomPoint -= itemData.probability;
             }
         }
+
+        shopBG.DOFade(0, 0);
+        shopBG.DOFade(1, 0.5f);
     }
 
     public void ResetItem()
     {
         foreach (GameObject g in currentItems)
         {
-            Destroy(g);
+            g.transform.GetChild(0).GetComponent<CanvasGroup>().DOFade(0, 0.5f).OnComplete(() =>Destroy(g));
         }
         currentItems.Clear();
+        shopBG.DOFade(0, 0.5f).OnComplete(() => GameManager.instance.uiManager.EnableShopOptions(false));
     }
 
     private void SetOnClick(GameObject g)
@@ -81,12 +92,35 @@ public class Shop : MonoBehaviour
                 }
             });
         }
+
+        // Vector3 defaultPos = g.transform.position;
+        // EventTrigger trigger = g.AddComponent<EventTrigger>();
+        // EventTrigger.Entry entry = new EventTrigger.Entry();
+        // entry.eventID = EventTriggerType.PointerEnter;
+        // entry.callback.AddListener((data) =>
+        // {
+        //     //上にバウンドする
+        //     if (g.transform.position.y == defaultPos.y)
+        //         g.transform.DOPunchPosition(new Vector3(0, 0.5f, 0), 0.2f, 1, 1).SetRelative(true).OnComplete(() =>
+        //         {
+        //             g.transform.position = defaultPos;
+        //         });
+        // });
+        // trigger.triggers.Add(entry);
+        // entry = new EventTrigger.Entry();
+        // entry.eventID = EventTriggerType.PointerExit;
+        // entry.callback.AddListener((data) =>
+        // {
+        //     g.transform.DOScale(defaultScale, 0.1f);
+        // });
+        // trigger.triggers.Add(entry);
     }
 
     private void Awake()
     {
-        positions.Add(this.transform.position + new Vector3(-alignment, 0, 0));
+        float offset = this.transform.parent.transform.position.x;
+        positions.Add(this.transform.position + new Vector3(-160, 0, 0));
         positions.Add(this.transform.position);
-        positions.Add(this.transform.position + new Vector3(alignment, 0, 0));
+        positions.Add(this.transform.position + new Vector3(160, 0, 0));
     }
 }
